@@ -20,6 +20,13 @@ const Navbar = () => {
       return <a href='/' onClick={logout}>Logout</a>
     }
   }
+  const sellerLogin = () => {
+    if (sessionStorage.getItem('token') === null){
+      return <a href='/login'>Sell</a>
+    } else {
+      return <a href='/sell'>Sell</a>
+    }
+  }
   const profileDropdown = (
     <Menu selectedKeys={[current]} onClick={handleClick}>
       <Menu.Item key="cart" icon={<ShoppingCartOutlined />}>
@@ -45,7 +52,7 @@ const Navbar = () => {
           Buy
           </Menu.Item>
         <Menu.Item key="sell" icon={<DollarOutlined />}>
-          Sell
+          {sellerLogin()}
           </Menu.Item>
         <Dropdown overlay={profileDropdown} placement="bottomCenter" trigger={['click']}>
           <img className='profileIcon' src={profileIcon} alt='profile icon' />

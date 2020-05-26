@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './homePage/HomePage'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import Sell from './products/Sell'
 
 const BodyRouter = () => {
     return(
@@ -23,6 +24,12 @@ const BodyRouter = () => {
                     return (
                         <Register routerProps={routerProps} />
                     );
+                }}
+                />
+                <Route exact path ="/sell" render={routerProps => {
+                    return (
+                        <Sell routerProps={routerProps}/>
+                    )
                 }}
                 />
         </Switch>
