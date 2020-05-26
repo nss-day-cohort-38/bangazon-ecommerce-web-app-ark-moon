@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Layout, Menu, Dropdown } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined, ShoppingCartOutlined, FrownOutlined } from '@ant-design/icons';
+import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined } from '@ant-design/icons';
 import logo from "../../images/BangazonLogo.png"
 
 
@@ -21,6 +21,9 @@ const Navbar = () => {
       <Menu.Item icon={<ShoppingCartOutlined />}>
         My Cart
       </Menu.Item>
+      <Menu.Item icon={<AppstoreAddOutlined />}>
+        My Orders
+      </Menu.Item>
       <Menu.Item icon={<SettingOutlined />}>
         My Account
       </Menu.Item>
@@ -36,31 +39,16 @@ const Navbar = () => {
     <Header id='navContainer'>
       <a href='/'><img id='navLogo' className='logo' src={logo} alt='Bangazon Logo' /></a>
       <Menu className='navMenu' onClick={handleClick} selectedKeys={[current]} mode="horizontal" >
-        <Menu.Item key="mail" icon={<MailOutlined />}>
-          Navigation One
+        <Menu.Item key="mail" icon={<GiftFilled />}>
+          Buy
           </Menu.Item>
-        <Menu.Item key="app" icon={<AppstoreOutlined />}>
-          Navigation Two
+        <Menu.Item key="app" icon={<DollarOutlined />}>
+          Sell
           </Menu.Item>
-        <SubMenu icon={<SettingOutlined />} title="Navigation Three - Submenu">
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <Menu.Item key="alipay">
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-            Navigation Four - Link
-            </a>
-        </Menu.Item>
+        <Dropdown overlay={profileDropdown} placement="bottomCenter" trigger={['click']}>
+          <img className='profileIcon' src={profileIcon} alt='profile icon' />
+        </Dropdown>
       </Menu>
-      <Dropdown overlay={profileDropdown} placement="bottomCenter" trigger={['click']}>
-        <img className='profileIcon' src={profileIcon} alt='profile icon'/>
-      </Dropdown>
     </Header>
   );
 }
