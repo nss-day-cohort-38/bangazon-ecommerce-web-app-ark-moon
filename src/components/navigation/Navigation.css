@@ -1,0 +1,52 @@
+#navLogo {
+  width: 170px;
+  margin-right: 70px;
+}
+#navContainer{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between !important;
+  background-color: var(--bangazonBlack);
+}
+
+.navMenu, .navMenu a{
+  color: lightgray !important;
+  background: none !important;
+}
+.ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-submenu-open:hover, .ant-menu-submenu-title:hover, #navMenu a:hover{
+  color: var(--bangazonDarkOrange) !important;
+  border-bottom: none !important;
+}
+.ant-menu-horizontal > .ant-menu-item-active, .ant-menu-horizontal > .ant-menu-submenu-active, .ant-menu-horizontal > .ant-menu-item-open, .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected {
+  color: var(--bangazonLightOrange) !important;
+  border-bottom: 2px solid var(--bangazonDarkOrange) !important;
+}
+.ant-menu-horizontal{
+  border-bottom: none !important;
+}
+.profileIcon{
+  width: 30px;
+  cursor: pointer;
+  transition: 0.5s ease;
+  border-radius: 50%;
+  background-color: lightgray;
+  margin-left: 20px;
+}
+.profileIcon:hover{
+  background-color: lightgray;
+  border-radius: 50%;
+  padding: 5px !important;
+  transition: 0.5s ease;
+}
+.ant-dropdown-menu-item:hover{
+  background-color: var(--bangazonLightOrange) !important;
+}
+#footer{
+  position: sticky;
+  bottom: 0;
+  width: 100vw;
+}
