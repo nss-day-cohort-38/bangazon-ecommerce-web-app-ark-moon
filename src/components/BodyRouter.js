@@ -1,13 +1,27 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './homePage/HomePage'
+import Login from './auth/Login'
+import Register from './auth/Register'
 
 const BodyRouter = () => {
     return(
         <Switch>
                 <Route exact path="/" render={routerProps => {
                     return (
-                        <HomePage routerProps={routerProps} />
+                        <HomePage routerProps={routerProps} />             
+                    );
+                }}
+                />
+                <Route exact path ="/login" render={routerProps => {
+                    return (
+                        <Login routerProps={routerProps} />
+                    );
+                }}
+                />
+                <Route exact path ="/register" render={routerProps => {
+                    return (
+                        <Register routerProps={routerProps} />
                     );
                 }}
                 />
