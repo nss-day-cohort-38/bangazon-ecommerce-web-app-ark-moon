@@ -18,17 +18,17 @@ const Navbar = () => {
 
   const profileDropdown = (
     <Menu>
-      <Menu.Item icon={<ShoppingCartOutlined />}>
+      <Menu.Item key="cart" icon={<ShoppingCartOutlined />}>
         My Cart
       </Menu.Item>
-      <Menu.Item icon={<AppstoreAddOutlined />}>
+      <Menu.Item key="orders" icon={<AppstoreAddOutlined />}>
         My Orders
       </Menu.Item>
-      <Menu.Item icon={<SettingOutlined />}>
+      <Menu.Item key='account' icon={<SettingOutlined />}>
         My Account
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item>
+      <Menu.Item key='login'>
         Login
       </Menu.Item>
     </Menu>
@@ -39,10 +39,10 @@ const Navbar = () => {
     <Header id='navContainer'>
       <a href='/'><img id='navLogo' className='logo' src={logo} alt='Bangazon Logo' /></a>
       <Menu className='navMenu' onClick={handleClick} selectedKeys={[current]} mode="horizontal" >
-        <Menu.Item key="mail" icon={<GiftFilled />}>
+        <Menu.Item key="buy" icon={<GiftFilled />}>
           Buy
           </Menu.Item>
-        <Menu.Item key="app" icon={<DollarOutlined />}>
+        <Menu.Item key="sell" icon={<DollarOutlined />}>
           Sell
           </Menu.Item>
         <Dropdown overlay={profileDropdown} placement="bottomCenter" trigger={['click']}>
