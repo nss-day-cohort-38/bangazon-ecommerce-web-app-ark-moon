@@ -46,6 +46,7 @@ const Login = ({routerProps}) => {
             <button type="Submit">Login</button>
             </fieldset>
         </form>
+    <a href="http://localhost:3000/register">Register</a>
    </>
   );
 };
