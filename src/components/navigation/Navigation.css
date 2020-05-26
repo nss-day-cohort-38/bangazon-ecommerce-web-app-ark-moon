@@ -25,6 +25,9 @@
   color: var(--bangazonLightOrange) !important;
   border-bottom: 2px solid var(--bangazonDarkOrange) !important;
 }
+.ant-menu-horizontal{
+  border-bottom: none !important;
+}
 .profileIcon{
   width: 30px;
   cursor: pointer;

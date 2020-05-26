@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { Layout, Menu, Dropdown } from 'antd';
 import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined } from '@ant-design/icons';
 import logo from "../../images/BangazonLogo.png"
+import profileIcon from "../../images/profileIcon.png"
 
-
-const profileIcon = require("../../images/profileIcon.png")
-const { SubMenu } = Menu;
 const { Header } = Layout;
 
 const Navbar = () => {
-  const [current, changeSelected] = useState('mail')
+  const [current, changeSelected] = useState('buy')
 
   const handleClick = e => {
     console.log('click ', e);
@@ -17,7 +15,7 @@ const Navbar = () => {
   };
 
   const profileDropdown = (
-    <Menu>
+    <Menu selectedKeys={[current]} onClick={handleClick}>
       <Menu.Item key="cart" icon={<ShoppingCartOutlined />}>
         My Cart
       </Menu.Item>
