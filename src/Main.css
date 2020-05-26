@@ -1,0 +1,12 @@
+body {
+    background-color: #f0f2f5;
+}
+
+#mainBodyContainer{
+    background-color: white;
+    width: 94vw;
+    height: 100vh;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}

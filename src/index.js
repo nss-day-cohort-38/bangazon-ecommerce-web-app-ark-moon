@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import BangazonEcommerceApp from './BangazonEcommerceApp';
 import * as serviceWorker from './serviceWorker';
+import 'antd/dist/antd.css'
+import './index.css';
+import './Main.css'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <BangazonEcommerceApp />
+  </Router>,
   document.getElementById('root')
 );
 
