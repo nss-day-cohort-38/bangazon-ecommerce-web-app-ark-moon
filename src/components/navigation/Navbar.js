@@ -3,17 +3,23 @@ import { Layout, Menu, Dropdown } from 'antd';
 import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined } from '@ant-design/icons';
 import logo from "../../images/BangazonLogo.png"
 import profileIcon from "../../images/profileIcon.png"
-
 const { Header } = Layout;
-
 const Navbar = () => {
   const [current, changeSelected] = useState('buy')
-
   const handleClick = e => {
     console.log('click ', e);
     changeSelected(e.key)
   };
-
+  const loginConditional = () => {
+    function logout(){
+      sessionStorage.clear()
+    };
+    if (sessionStorage.getItem('token') === null){
+      return <a href='/login'>Login</a>
+    } else {
+      return <a href='/' onClick={logout}>Logout</a>
+    }
+  }
   const profileDropdown = (
     <Menu selectedKeys={[current]} onClick={handleClick}>
       <Menu.Item key="cart" icon={<ShoppingCartOutlined />}>
@@ -27,12 +33,10 @@ const Navbar = () => {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key='login'>
-        Login
+        {loginConditional()}
       </Menu.Item>
     </Menu>
-
   );
-
   return (
     <Header id='navContainer'>
       <a href='/'><img id='navLogo' className='logo' src={logo} alt='Bangazon Logo' /></a>
@@ -50,5 +54,4 @@ const Navbar = () => {
     </Header>
   );
 }
-
 export default Navbar;
