@@ -5,8 +5,7 @@ const Sell = ({routerProps}) => {
 
 const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "", image_path: "", })
      
-const userToken = sessionStorage.getItem("token").value
-console.log(userToken)
+
   const handleFieldChange = (evt) => {
     const stateToChange = {...productInfo}
     stateToChange[evt.target.id] = evt.target.value
