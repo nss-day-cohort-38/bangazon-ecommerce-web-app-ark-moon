@@ -1,9 +1,10 @@
 import React from 'react'
+import ProductList from "../products/ProductList"
 
-const HomePage = () => {
+const HomePage = ({routerProps}) => {
     return(
         <div>
-            
+            {/* <ProductList routerProps={routerProps}/> */}
         </div>
     );
 };
