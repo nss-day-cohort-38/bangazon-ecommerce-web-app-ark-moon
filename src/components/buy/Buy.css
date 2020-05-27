@@ -1,7 +1,7 @@
 
 .categoryMenu{
     position: absolute !important;
-    width: 150px;
+    width: 162px;
     height: 100%;
     overflow: auto;
 }
@@ -12,12 +12,12 @@
     flex-wrap: wrap;
     top: 20px;
     width: 80%;
-    right: 0;
+    left: 208px;
     height: 100vh;
     overflow: auto;
 }
 .productCard{
-    margin: 10px !important;
+    margin: 1vw !important;
     width: 250px;
     height: 315px;
 }
