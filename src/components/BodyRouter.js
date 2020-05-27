@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import HomePage from './homePage/HomePage'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import ProductsMain from './buy/Products'
 
 const BodyRouter = () => {
     return(
@@ -25,6 +26,13 @@ const BodyRouter = () => {
                     );
                 }}
                 />
+                <Route exact path ="/buy" render={routerProps => {
+                    return (
+                        <ProductsMain routerProps={routerProps} />
+                    );
+                }}
+                />
+
         </Switch>
     );
 };
