@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import AuthManager from "../../modules/AuthManager.js"
+import ProductManager from "../../modules/ProductManager.js"
 
 const Sell = ({routerProps}) => {
 
@@ -23,7 +23,7 @@ const [productInfo, setProductInfo] = useState({title: "", price: "", descriptio
           "image_path": productInfo.image_path
       }
     // ???  API call to product , product type & customer ???
-     
+     ProductManager.addproduct()
   }
 
  
