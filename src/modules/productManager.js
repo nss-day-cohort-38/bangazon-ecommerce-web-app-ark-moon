@@ -21,19 +21,19 @@ const productAPI = {
       body: JSON.stringify(),
     }).then((resp) => resp.json());
   },
-  async getProductList() {
-    const resp = await fetch(`${baseUrl}products`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Token ${sessionStorage.getItem("token")}`,
-      },
-    });
-    return await resp.json();
-  },
+  // async getProductList() {
+  //   const resp = await fetch(`${baseUrl}/products`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       Authorization: `Token ${sessionStorage.getItem("token")}`,
+  //     },
+  //   });
+  //   return await resp.json();
+  // },
   async getProductDetail(productId) {
-    const resp = await fetch(`${baseUrl}products/${productId}`, {
+    const resp = await fetch(`${baseUrl}/products/${productId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

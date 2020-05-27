@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import productManager from "../../modules/productManager";
-import "./ProductList.css";
+// import "./ProductList.css";
 
 const ProductDetail = (routerProps) => {
   const productId = routerProps.productId;
@@ -18,9 +18,10 @@ const ProductDetail = (routerProps) => {
     };
     getProductDetail();
   }, []);
+
   return (
-      <>
-          <div></div>
+    <>
+      <div></div>
       <h1>{productDetails.title}</h1>
       <ul>
         <li>Price: ${productDetails.price}</li>
@@ -31,7 +32,7 @@ const ProductDetail = (routerProps) => {
       </ul>
       <button
         className="product_detail_back_btn"
-        onClick={() => props.history.push("/")}
+        onClick={() => props.history.push("/buy")}
       >
         Back
       </button>

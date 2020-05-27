@@ -5,10 +5,9 @@ import ProductCard from './ProductCard'
 import './Buy.css'
 
 
-const ProductMain = () => {
+const ProductMain = ({routerProps}) => {
     const [selectedCategory, changeCategory] = useState('all')
     const [products, addAllProducts] = useState(null)
-
     function getProducts(){
         productAPI.getProducts().then(resp=>{
             addAllProducts(resp)
@@ -21,7 +20,7 @@ const ProductMain = () => {
             if(selectedCategory === 'all'){
                 return ( 
                     products.map((productObj, i)=>{
-                        return <ProductCard key={i} productObj={productObj}/>
+                        return <ProductCard key={i} productObj={productObj} routerProps={routerProps}/>
                     })
                 );
             } else {

@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "./homePage/HomePage";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import ProductDetail from "./products/ProductDetail";
+import ProductDetail from "./buy/ProductDetail";
 import ProductsMain from "./buy/Products";
 
 const BodyRouter = () => {

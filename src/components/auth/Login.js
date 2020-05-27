@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AuthManager from "../../modules/authManager.js";
+import authManager from "../../modules/authManager.js";
 
 const Login = ({ routerProps }) => {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -20,7 +20,7 @@ const Login = ({ routerProps }) => {
       username: credentials.username,
       password: credentials.password,
     };
-    AuthManager.loginUser(customerCreds).then(() => {
+    authManager.loginUser(customerCreds).then(() => {
       setIsLoggedIn(true);
       routerProps.history.push("/");
     });
