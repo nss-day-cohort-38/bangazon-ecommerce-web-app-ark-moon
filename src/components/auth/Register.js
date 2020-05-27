@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react"
-import AuthManager from "../../modules/AuthManager.js"
+import React, {useState} from "react"
+import authManager from "../../modules/authManager.js"
 
 const Login = ({routerProps}) => {
 
@@ -24,7 +24,7 @@ const Login = ({routerProps}) => {
           "phone_number": credentials.phone_number
       }
     //   Login User
-      return AuthManager.registerUser(customerCreds)
+      return authManager.registerUser(customerCreds)
       .then(parsedResponse => {
           if("valid" in parsedResponse && parsedResponse.valid && "token" in parsedResponse) {
               sessionStorage.setItem("token", parsedResponse.token)
