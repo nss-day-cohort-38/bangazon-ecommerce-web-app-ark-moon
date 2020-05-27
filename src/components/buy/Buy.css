@@ -17,6 +17,7 @@
     overflow: auto;
 }
 .productCard{
+    cursor: pointer;
     margin: 1vw !important;
     width: 250px;
     height: 315px;
