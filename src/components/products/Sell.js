@@ -3,7 +3,7 @@ import AuthManager from "../../modules/AuthManager.js"
 
 const Sell = ({routerProps}) => {
 
-const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "", image_path: "", })
+const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "", image_path: "", product_type: ""})
      
 
   const handleFieldChange = (evt) => {
@@ -56,6 +56,7 @@ const [productInfo, setProductInfo] = useState({title: "", price: "", descriptio
                 <label htmlFor="image_path">Image Path</label>
                 <input onChange={handleFieldChange} type="text" id="image_path" placeholder="Image Path" value={productInfo.image_path}/>
             </fieldset>
+            
             <fieldset>
             <button type="Submit">Add Product</button>
             </fieldset>
