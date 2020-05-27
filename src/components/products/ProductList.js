@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import AuthManager from "../../modules/AuthManager";
+import productManager from "../../modules/productManager";
 import "./ProductList.css";
 
 const ProductList = ({routerProps}) => {
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
     try {
-      const productList = await AuthManager.getProductList();
+      const productList = await productManager.getProductList();
       setProducts(productList);
     } catch (err) {
       console.log(err);

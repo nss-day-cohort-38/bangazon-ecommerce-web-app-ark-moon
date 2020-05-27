@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import AuthManager from "../../modules/AuthManager";
+import productManager from "../../modules/productManager";
 import "./ProductList.css";
 
 const ProductDetail = (routerProps) => {
@@ -11,7 +11,7 @@ const ProductDetail = (routerProps) => {
 
   useEffect(() => {
     const getProductDetail = async () => {
-      const getDetailsForProduct = await AuthManager.getProductDetail(
+      const getDetailsForProduct = await productManager.getProductDetail(
         productId
       );
       setProductDetails(getDetailsForProduct);

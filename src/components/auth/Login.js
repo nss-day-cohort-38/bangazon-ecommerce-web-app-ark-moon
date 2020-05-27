@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import AuthManager from "../../modules/AuthManager.js";
+import React, { useState } from "react";
+import AuthManager from "../../modules/authManager.js";
 
 const Login = ({ routerProps }) => {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -25,6 +25,22 @@ const Login = ({ routerProps }) => {
       routerProps.history.push("/");
     });
   };
+  //     e.preventDefault()
+  //     const customerCreds = {
+  //         "username": credentials.username, 
+  //         "password": credentials.password
+  //     }
+  //     return authManager.loginUser(customerCreds)
+  //     .then(parsedResponse => {
+  //         if("valid" in parsedResponse && parsedResponse.valid && "token" in parsedResponse) {
+  //             sessionStorage.setItem("token", parsedResponse.token)
+  //             setIsLoggedIn(true)
+  //         }
+  //     })
+  //     .then(() => routerProps.history.push("/"))
+  // }
+
+ 
 
   return (
     <>

@@ -4,6 +4,7 @@ import HomePage from "./homePage/HomePage";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ProductDetail from "./products/ProductDetail";
+import ProductsMain from "./buy/Products";
 
 const BodyRouter = () => {
   return (
@@ -39,6 +40,13 @@ const BodyRouter = () => {
               routerProps={routerProps}
             />
           );
+        }}
+      />
+      <Route
+        exact
+        path="/buy"
+        render={(routerProps) => {
+          return <ProductsMain routerProps={routerProps} />;
         }}
       />
     </Switch>
