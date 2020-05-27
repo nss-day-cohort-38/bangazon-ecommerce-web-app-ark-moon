@@ -1,0 +1,26 @@
+
+.categoryMenu{
+    position: absolute !important;
+    width: 150px;
+    height: 100%;
+    overflow: auto;
+}
+.productContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    top: 20px;
+    width: 80%;
+    right: 0;
+    height: 100vh;
+    overflow: auto;
+}
+.productCard{
+    margin: 10px !important;
+    width: 250px;
+    height: 315px;
+}
+.productCard img{
+    height: 150px;
+}

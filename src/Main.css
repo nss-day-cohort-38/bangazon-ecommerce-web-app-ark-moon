@@ -5,7 +5,7 @@ body {
 #mainBodyContainer{
     background-color: white;
     width: 94vw;
-    height: 100vh;
+    height: 80vh !important;
     margin-top: 75px;
     margin-left: auto;
     margin-right: auto;
