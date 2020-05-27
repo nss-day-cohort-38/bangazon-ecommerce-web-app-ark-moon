@@ -1,6 +1,6 @@
 const baseUrl = "http://127.0.0.1:8000/"
 
-const AuthManager = {
+const authManager = {
     loginUser(user) {
         return fetch(`${baseUrl}login/`, {
             method: "POST", 
@@ -23,4 +23,4 @@ const AuthManager = {
     }
 }
 
-export default AuthManager
+export default authManager;
