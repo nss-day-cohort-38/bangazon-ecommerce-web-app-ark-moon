@@ -4,7 +4,7 @@ import productManager from "../../modules/productManager.js"
 
 const Sell = ({routerProps}) => {
 
-const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "", image_path: "", product_type: ""})
+const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "none", image_path: "", product_type: ""})
 const [productTypes, setProductTypes] = useState([])
 const [localPickup, setIsLocalPickup] = useState(false)
 

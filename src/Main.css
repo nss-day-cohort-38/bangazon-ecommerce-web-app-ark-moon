@@ -5,12 +5,13 @@ body {
 #mainBodyContainer{
     background-color: white;
     width: 94vw;
-    height: 90vh !important;
+    min-height: 90vh !important;
     margin-top: 75px;
-    margin-left: auto;
-    margin-right: auto;
+    overflow: auto;
+    position: fixed;
+    left: 30px;
 }
 
-.hidden {
-    display: none;
+.clickable{
+    cursor: pointer;
 }
