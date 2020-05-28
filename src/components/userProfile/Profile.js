@@ -11,7 +11,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    getCurrentCustomer(sessionStorage.getItem("userId"));
+    getCurrentCustomer(sessionStorage.getItem("customerId"));
   }, []);
 
   console.log(customer);
