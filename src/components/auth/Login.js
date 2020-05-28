@@ -20,27 +20,21 @@ const Login = ({ routerProps }) => {
       username: credentials.username,
       password: credentials.password,
     };
-    authManager.loginUser(customerCreds).then(() => {
-      setIsLoggedIn(true);
-      routerProps.history.push("/");
-    });
+    return authManager
+      .loginUser(customerCreds)
+      .then((parsedResponse) => {
+        if (
+          "valid" in parsedResponse &&
+          parsedResponse.valid &&
+          "token" in parsedResponse
+        ) {
+          sessionStorage.setItem("token", parsedResponse.token);
+          sessionStorage.setItem("customerId", parsedResponse.customer_id)
+          setIsLoggedIn(true);
+        }
+      })
+      .then(() => routerProps.history.push("/"));
   };
-  //     e.preventDefault()
-  //     const customerCreds = {
-  //         "username": credentials.username, 
-  //         "password": credentials.password
-  //     }
-  //     return authManager.loginUser(customerCreds)
-  //     .then(parsedResponse => {
-  //         if("valid" in parsedResponse && parsedResponse.valid && "token" in parsedResponse) {
-  //             sessionStorage.setItem("token", parsedResponse.token)
-  //             setIsLoggedIn(true)
-  //         }
-  //     })
-  //     .then(() => routerProps.history.push("/"))
-  // }
-
- 
 
   return (
     <>

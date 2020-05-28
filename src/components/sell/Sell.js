@@ -6,9 +6,8 @@ const Sell = ({routerProps}) => {
 
 const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "", image_path: "", product_type: ""})
 const [productTypes, setProductTypes] = useState([])
-const [localDelivery, setIsLocalDelivery] = useState(false)
-const [isChecked, setIsChecked] = useState(false)
-     
+const [localPickup, setIsLocalPickup] = useState(false)
+
 
   const handleFieldChange = (evt) => {
     const stateToChange = {...productInfo}
@@ -31,9 +30,6 @@ const [isChecked, setIsChecked] = useState(false)
     
       
     productManager.postSellableProduct(product).then(routerProps.history.push("/"))
-      
-   
-    // If local delivery = true, on submit will push to an array (?) of searchable cities
     
   }
 
@@ -43,17 +39,18 @@ const [isChecked, setIsChecked] = useState(false)
       })
   }
 
-  const handleCheckBox = () => { setIsLocalDelivery(!localDelivery)  }
+  const handleCheckBox = () => { setIsLocalPickup(!localPickup)  }
   
 
 useEffect(() => {
     getProductTypes()
-   
 }, [])
 
 useEffect(() => {
-    console.log(localDelivery)
-}, [localDelivery])
+    localPickupConditional()
+}, [localPickup])
+
+const localPickupConditional = () => { document.getElementById("locationField").classList.toggle("hidden")}
 
   return (
    <>
@@ -76,13 +73,13 @@ useEffect(() => {
                 <input onChange={handleFieldChange} type="number" id="quantity" placeholder="Quantity" value={productInfo.quantity}required />
             </fieldset>
             <fieldset>
-                <label htmlFor="location">Location</label>
-                <input onChange={handleFieldChange} type="text" id="location" placeholder="Location" value={productInfo.location}required />
-            </fieldset>
-            <fieldset>
-                <label>Local Delivery </label>
-                <input type="checkbox" value="check" onChange = {handleCheckBox}></input>
-            </fieldset>
+                 <label>Local Pickup </label>
+                 <input type="checkbox" value={localPickup} onChange = {handleCheckBox}></input>
+             </fieldset>
+             <fieldset id="locationField">
+                 <label htmlFor="location">Location</label>
+                 <input onChange={handleFieldChange} type="text" id="location" placeholder="Location" value={productInfo.location} />
+             </fieldset>
             <fieldset>
                 <label htmlFor="image_path">Image Path</label>
                 <input onChange={handleFieldChange} type="text" id="image_path" placeholder="Image Path" value={productInfo.image_path}required />

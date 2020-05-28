@@ -32,8 +32,8 @@ const Navbar = () => {
           <Menu.Item key="orders" icon={<AppstoreAddOutlined />} href='orders'>
             My Orders
           </Menu.Item>
-          <Menu.Item key='account' icon={<SettingOutlined />} href='account'>
-            My Account
+          <Menu.Item key='myprofile' icon={<SettingOutlined />} href='/myprofile'>
+            My Profile
           </Menu.Item>
           <Menu.Divider />
           <Menu.Item onClick={logout}>
