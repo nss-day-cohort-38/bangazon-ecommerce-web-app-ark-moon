@@ -7,7 +7,7 @@ import productAPI from '../../modules/productManager'
 
 const { SubMenu } = Menu;
 
-const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => {
+const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount, changeSearchTerm}) => {
     const [categories, createCategories] = useState()
     const [loading, setLoading] = useState(true)
 
@@ -22,6 +22,8 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => 
     function selectCategory(e){
         console.log(e.key)
         changeCategory(e.key)
+        changeSearchTerm(null)
+
     }
 
     const categoryMenuItems = () => {

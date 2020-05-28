@@ -44,12 +44,10 @@ const ProductMain = () => {
 
     function productFilterUltraFunction(){
         
-        if(locationBoolean){
-            const filteredProducts = products.filter(product=>product.location);
         if (selectedCategory === 'all' && searchTerm === null){
-            return filteredProducts
+            return products
         } else if (selectedCategory === 'all' && searchTerm !== null){
-            const filtered =  filteredProducts.filter(product=>{
+            const filtered =  products.filter(product=>{
                 if(product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm)) {
                     return true
                 }
@@ -57,7 +55,7 @@ const ProductMain = () => {
             console.log(filtered)
             return filtered
         } else if (selectedCategory !== 'all' && searchTerm !== null){
-            const filtered =  filteredProducts.filter(product=>{
+            const filtered =  products.filter(product=>{
                 if((product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm)) && (product.product_type.name === selectedCategory)) {
                     return true
                 }
@@ -65,39 +63,25 @@ const ProductMain = () => {
             console.log(filtered)
             return filtered
         } else if (selectedCategory !== 'all' && searchTerm === null){
-            const filtered = filteredProducts.filter(productObj=>productObj.product_type.name === selectedCategory)
+            const filtered = products.filter(productObj=>productObj.product_type.name === selectedCategory)
             return filtered
         }
-        } else {
-            if (selectedCategory === 'all' && searchTerm === null){
-                return products
-            } else if (selectedCategory === 'all' && searchTerm !== null){
-                const filtered =  products.filter(product=>{
-                    if (product.title && (product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm))) {
-                        return true
-                    }
-                })
-                console.log(filtered)
-                return filtered
-            } else if (selectedCategory !== 'all' && searchTerm !== null){
-                const filtered =  products.filter(product=>{
-                    if(product.location && (product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm)) && (product.product_type.name === selectedCategory)) {
-                        return true
-                    }
-                })
-                console.log(filtered)
-                return filtered
-            } else if (selectedCategory !== 'all' && searchTerm === null){
-                const filtered = products.filter(productObj=>productObj.product_type.name === selectedCategory)
-                return filtered
-            }
+    }
+
+    function locationFilter(){
+        if(locationBoolean){
+            const filteredProducts = productFilterUltraFunction()
+            return filteredProducts.filter(prod => prod.location !== 'none')
+        }
+        else{
+            return productFilterUltraFunction()
         }
     }
 
     function createProductCards(){
 
         if (products !== null){
-            const filteredProducts = productFilterUltraFunction()
+            const filteredProducts = locationFilter()
             return ( 
                 filteredProducts.map((productObj, i)=>{
                     return <ProductCard key={i} productObj={productObj}/>
@@ -117,12 +101,12 @@ const ProductMain = () => {
         createProductCards()
     },[products])
     useEffect(()=>{
-        console.log(locationBoolean)
+        locationFilter()
     },[locationBoolean])
 
     return (
         <>
-        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount}/>
+        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount} changeSearchTerm={changeSearchTerm}/>
         <div>
             <ProductNavbar changeSearchTerm={changeSearchTerm} setLocationBoolean={setLocationBoolean} locationBoolean={locationBoolean} locationAmount={locationAmount} changeSearchedLocation={changeSearchedLocation}/>
         
