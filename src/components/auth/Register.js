@@ -28,11 +28,12 @@ const Login = ({ routerProps }) => {
     };
     //   Login User
     authManager.registerUser(customerCreds).then(() => {
-      //   if("valid" in parsedResponse && parsedResponse.valid && "token" in parsedResponse) {
-      //       sessionStorage.setItem("token", parsedResponse.token)
-      setIsLoggedIn(true);
-      routerProps.history.push("/");
-    });
+      // if ("valid" in parsedResponse && parsedResponse.valid && "token" in parsedResponse) {
+      //   sessionStorage.setItem("token", parsedResponse.token)
+        setIsLoggedIn(true);
+        routerProps.history.push("/");
+      })
+  //   });
   };
 
   return (
