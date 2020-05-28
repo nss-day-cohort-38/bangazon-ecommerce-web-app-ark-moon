@@ -28,8 +28,11 @@ const [isChecked, setIsChecked] = useState(false)
           "image_path": productInfo.image_path,
           "product_type": parseInt(productInfo.product_type)
       }
-   
+    
+      
     productManager.postSellableProduct(product).then(routerProps.history.push("/"))
+      
+   
     // If local delivery = true, on submit will push to an array (?) of searchable cities
     
   }
@@ -87,6 +90,8 @@ useEffect(() => {
             <fieldset>
                 <label>Product Types:</label>
                 <select className="select" id="product_type" onChange={handleFieldChange} required >
+                    {/* Value must be set to empty string to know it has not been selected */}
+                <option disabled={true} selected value="">Select</option>
               {productTypes.map(productType => {
                  return <option key={productType.id} value={productType.id}>
                  {productType.name}
