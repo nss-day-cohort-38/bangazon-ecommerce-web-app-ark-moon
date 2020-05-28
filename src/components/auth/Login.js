@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import authManager from "../../modules/authManager.js"
+import authManager from '../../modules/authManager'
 
 const Login = ({routerProps}) => {
 

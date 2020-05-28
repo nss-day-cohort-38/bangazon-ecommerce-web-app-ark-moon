@@ -2,40 +2,109 @@ import React, { useState, useEffect } from 'react'
 import productAPI from '../../modules/productManager'  
 import CategorySidebar from './CategorySidebar'
 import ProductCard from './ProductCard'
+import ProductNavbar from './ProductNavbar'
+import {Menu, Input, Spin, Switch} from 'antd'
 import './Buy.css'
 
+const {Search} = Input
 
 const ProductMain = () => {
     const [selectedCategory, changeCategory] = useState('all')
+    const [searchTerm, changeSearchTerm] = useState(null)
+    const [searchedLocation, changeSearchedLocation] = useState(null)
     const [products, addAllProducts] = useState(null)
+    const [categoryAmount, changeCategoryAmount] = useState()
+    const [locationAmount, changeLocationAmount] = useState()
+    const [locationBoolean, setLocationBoolean] = useState(false)
 
     function getProducts(){
         productAPI.getProducts().then(resp=>{
             addAllProducts(resp)
             console.log(resp)
+            const categoryObjects = {}
+            const locationObjects = {}
+            resp.forEach(product=>{
+                if (categoryObjects[`${product.product_type.name}`] === undefined){
+                    categoryObjects[`${product.product_type.name}`] = 1
+                }else{
+                    categoryObjects[`${product.product_type.name}`] += 1
+                };
+                if (locationObjects[`${product.location}`] === undefined){
+                    locationObjects[`${product.location}`] = 1
+                }else{
+                    locationObjects[`${product.location}`] += 1
+                }
+
+            })
+            changeLocationAmount(locationObjects)
+            changeCategoryAmount(categoryObjects)
         });
+        
     };
 
-    function createProductCards(){
-        if (products !== null){
-            if(selectedCategory === 'all'){
-                return ( 
-                    products.map((productObj, i)=>{
-                        return <ProductCard key={i} productObj={productObj}/>
-                    })
-                );
-            } else {
-                const filteredProducts = products.filter(productObj=>productObj.product_type.name === selectedCategory)
-                
-                return ( 
-                    filteredProducts.map((productObj, i)=>{
-                        return <ProductCard key={i} productObj={productObj}/>
-                    })
-                );
+    function productFilterUltraFunction(){
+        
+        if(locationBoolean){
+            const filteredProducts = products.filter(product=>product.location);
+        if (selectedCategory === 'all' && searchTerm === null){
+            return filteredProducts
+        } else if (selectedCategory === 'all' && searchTerm !== null){
+            const filtered =  filteredProducts.filter(product=>{
+                if(product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm)) {
+                    return true
+                }
+            })
+            console.log(filtered)
+            return filtered
+        } else if (selectedCategory !== 'all' && searchTerm !== null){
+            const filtered =  filteredProducts.filter(product=>{
+                if((product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm)) && (product.product_type.name === selectedCategory)) {
+                    return true
+                }
+            })
+            console.log(filtered)
+            return filtered
+        } else if (selectedCategory !== 'all' && searchTerm === null){
+            const filtered = filteredProducts.filter(productObj=>productObj.product_type.name === selectedCategory)
+            return filtered
+        }
+        } else {
+            if (selectedCategory === 'all' && searchTerm === null){
+                return products
+            } else if (selectedCategory === 'all' && searchTerm !== null){
+                const filtered =  products.filter(product=>{
+                    if (product.title && (product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm))) {
+                        return true
+                    }
+                })
+                console.log(filtered)
+                return filtered
+            } else if (selectedCategory !== 'all' && searchTerm !== null){
+                const filtered =  products.filter(product=>{
+                    if(product.location && (product.title.includes(searchTerm) || product.price.includes(searchTerm) || product.description.includes(searchTerm) || product.location.includes(searchTerm)) && (product.product_type.name === selectedCategory)) {
+                        return true
+                    }
+                })
+                console.log(filtered)
+                return filtered
+            } else if (selectedCategory !== 'all' && searchTerm === null){
+                const filtered = products.filter(productObj=>productObj.product_type.name === selectedCategory)
+                return filtered
             }
+        }
+    }
 
+    function createProductCards(){
+
+        if (products !== null){
+            const filteredProducts = productFilterUltraFunction()
+            return ( 
+                filteredProducts.map((productObj, i)=>{
+                    return <ProductCard key={i} productObj={productObj}/>
+                })
+            );
         } else if(products === null) {
-            return <h1>Loading Products . . . </h1>
+            return <h1 style={{'marginLeft':'40%', 'marginTop':'100px'}}>Loading Products . . . <Spin size="large" /> </h1>
         };
     
     };
@@ -47,12 +116,19 @@ const ProductMain = () => {
     useEffect(()=>{
         createProductCards()
     },[products])
+    useEffect(()=>{
+        console.log(locationBoolean)
+    },[locationBoolean])
 
     return (
         <>
-        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory}/>
-        <div className='productContainer'>
-            {createProductCards()}
+        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount}/>
+        <div>
+            <ProductNavbar changeSearchTerm={changeSearchTerm} setLocationBoolean={setLocationBoolean} locationBoolean={locationBoolean} locationAmount={locationAmount} changeSearchedLocation={changeSearchedLocation}/>
+        
+            <div className='productContainer'>
+                {createProductCards()}
+            </div>
         </div>
         </>
     );

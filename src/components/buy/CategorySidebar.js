@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Menu, PageHeader } from 'antd';
+import { Menu, PageHeader, Spin } from 'antd';
 import {
     AimOutlined
 } from '@ant-design/icons';
@@ -7,11 +7,16 @@ import productAPI from '../../modules/productManager'
 
 const { SubMenu } = Menu;
 
-const CategorySidebar = ({selectedCategory, changeCategory}) => {
-    const [categories, createCategories] = useState([{name: 'loading categories ...'}])
+const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => {
+    const [categories, createCategories] = useState()
+    const [loading, setLoading] = useState(true)
 
     function getCategories(){
-        productAPI.getProductTypes().then(resp=>createCategories(resp));
+        productAPI.getProductTypes().then(resp=>{
+            createCategories(resp)
+            setLoading(false)
+            console.log(categoryAmount)
+        });
     }
 
     function selectCategory(e){
@@ -20,13 +25,26 @@ const CategorySidebar = ({selectedCategory, changeCategory}) => {
     }
 
     const categoryMenuItems = () => {
-        return categories.map(category=>{
-            return (
-                <Menu.Item key={category.name} onClick={selectCategory}>
-                    - {category.name}
-                </Menu.Item>
-            )
-        })
+        if (loading === true){
+            return <Spin size="small" style={{'marginLeft':'50px'}}/>
+        } else {
+            console.log(categoryAmount)
+            return categories.map(category=>{
+                if (categoryAmount && (categoryAmount[`${category.name}`] !== undefined)){
+                    return (
+                        <Menu.Item key={category.name} onClick={selectCategory}>
+                            - {category.name} ({categoryAmount[category.name]})
+                        </Menu.Item>
+                    )
+                } else {
+                return (
+                    <Menu.Item key={category.name} onClick={selectCategory}>
+                        - {category.name}
+                    </Menu.Item>
+                )
+                }
+            })
+        }
     }
 
     useEffect(()=>{
