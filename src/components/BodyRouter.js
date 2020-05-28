@@ -5,6 +5,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ProductDetail from "./buy/ProductDetail";
 import ProductsMain from "./buy/Products";
+import Sell from "./sell/Sell";
 
 const BodyRouter = () => {
   return (
@@ -47,6 +48,13 @@ const BodyRouter = () => {
         path="/buy"
         render={(routerProps) => {
           return <ProductsMain routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/sell"
+        render={(routerProps) => {
+          return <Sell routerProps={routerProps} />;
         }}
       />
     </Switch>
