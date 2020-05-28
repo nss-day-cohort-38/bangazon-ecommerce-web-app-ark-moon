@@ -9,11 +9,7 @@ const authManager = {
         Accept: "application/json",
       },
       body: JSON.stringify(user),
-    }).then((resp) => {
-      resp.json().then((resp) => {
-        sessionStorage.setItem("token", resp.token);
-      });
-    });
+    }).then((resp) => resp.json());
   },
   registerUser(user) {
     return fetch(`${baseUrl}register/`, {
@@ -23,12 +19,8 @@ const authManager = {
         Accept: "application/json",
       },
       body: JSON.stringify(user),
-    }).then((resp) =>
-      resp.json().then((token) => {
-        sessionStorage.setItem("token", token.token);
-      })
-    );
-  }
+    }).then((resp) => resp.json());
+  },
 };
 
-export default authManager
+export default authManager;
