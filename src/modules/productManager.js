@@ -21,16 +21,16 @@ const productAPI= {
             body: JSON.stringify()
         }).then(resp=>resp.json())
     }, 
-    postSellableProduct(){
+    postSellableProduct(product){
         return fetch(`${baseUrl}/sell`, {
-            method: "GET", 
+            method: "POST", 
             headers: {
                 "Content-Type": "application/json", 
                 "Accept": "application/json",
-                "Authorization": "Token "
+                "Authorization": `Token ${sessionStorage.getItem("token")}`
             }, 
-            body: JSON.stringify()
-        }).then(resp=>resp.json())
+            body: JSON.stringify(product)
+        }).then(resp => resp.json())
     }
 }
 
