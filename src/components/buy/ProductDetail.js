@@ -6,18 +6,30 @@ import productManager from "../../modules/productManager";
 const ProductDetail = (routerProps) => {
   const productId = routerProps.productId;
   const props = routerProps.routerProps;
+
   const [productDetails, setProductDetails] = useState({});
-  const [cart, setCart] = useState({});
-  const [productObj, setProductObj] = useState({})
+  const [order, setOrder] = useState({
+    created_at: "",
+    customer_id: "",
+    payment_type_id: "",
+  });
+
+  // Fetch all the order first....
+  const newOrder = {
+    created_at: order.created_at,
+    customer_id: order.customer_id,
+    payment_type_id: order.payment_type_id,
+  }
 
   const addToCart = async () => {
     try {
-      const updateCart = await productManager.addProductToCart(productId);
-      setCart(updateCart);
+      const updateCart = await productManager.addProductToCart(productId, newOrder);
+      setOrder(updateCart);
     } catch (err) {
       console.log(err);
     }
   };
+
 
   useEffect(() => {
     const getProductDetail = async () => {
