@@ -8,6 +8,7 @@ const ProductDetail = (routerProps) => {
   const props = routerProps.routerProps;
   const [productDetails, setProductDetails] = useState({});
   const [cart, setCart] = useState({});
+  const [productObj, setProductObj] = useState({})
 
   const addToCart = async () => {
     try {
@@ -32,7 +33,7 @@ const ProductDetail = (routerProps) => {
     <>
       <div>
       <h1>{productDetails.title}</h1>
-      <button className='buy_product' onClick={addToCart}>Buy</button>
+      <button className='buy_product' onClick={addToCart}>Add To Cart</button>
       <ul>
         <li>Price: ${productDetails.price}</li>
         <li>Description: {productDetails.description}</li>

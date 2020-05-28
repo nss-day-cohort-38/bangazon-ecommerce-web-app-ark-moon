@@ -21,14 +21,15 @@ const productAPI = {
       body: JSON.stringify(),
     }).then((resp) => resp.json());
   },
-  async addProductToCart(productId) {
-    const resp = await fetch(`${baseUrl}/orderproduct/${productId}`, {
+  async addProductToCart(productId, product) {
+    const resp = await fetch(`${baseUrl}/orders/${productId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Token ${sessionStorage.getItem("token")}`,
       },
+      body: JSON.stringify( {product} ),
     });
     return await resp.json();
   },
