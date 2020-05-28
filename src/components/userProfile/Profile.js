@@ -11,19 +11,26 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    getCurrentCustomer(1);
+    getCurrentCustomer(sessionStorage.getItem("userId"));
   }, []);
 
   console.log(customer);
 
   if (customer) {
     return (
-      <h1>
-        {customer.user.first_name} {customer.user.last_name}
-      </h1>
+      <>
+        <h1>
+          {customer.user.first_name} {customer.user.last_name}
+        </h1>
+        <h3>
+          <em>{customer.user.username}</em>
+        </h3>
+        <h3>{customer.phone_number}</h3>
+        <h3>{customer.address}</h3>
+      </>
     );
   } else {
-      return <h1>Ain't got shit!</h1>
+    return <h1>Ain't got shit!</h1>;
   }
 };
 

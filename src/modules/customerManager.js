@@ -7,11 +7,10 @@ const CustomerManager = {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": `Token ${sessionStorage.getItem('token')}`
       },
       body: JSON.stringify(),
     }).then((resp) => resp.json());
   },
 };
 
-export default CustomerManager
+export default CustomerManager;

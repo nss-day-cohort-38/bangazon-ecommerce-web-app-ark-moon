@@ -29,6 +29,7 @@ const Login = ({ routerProps }) => {
           "token" in parsedResponse
         ) {
           sessionStorage.setItem("token", parsedResponse.token);
+          sessionStorage.setItem("userId", parsedResponse.user)
           setIsLoggedIn(true);
         }
       })
