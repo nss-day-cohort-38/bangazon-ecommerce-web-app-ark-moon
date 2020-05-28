@@ -20,7 +20,6 @@ const ProductMain = () => {
     function getProducts(){
         productAPI.getProducts().then(resp=>{
             addAllProducts(resp)
-            console.log(resp)
             const categoryObjects = {}
             const locationObjects = {}
             resp.forEach(product=>{
@@ -52,7 +51,6 @@ const ProductMain = () => {
                     return true
                 }
             })
-            console.log(filtered)
             return filtered
         } else if (selectedCategory !== 'all' && searchTerm !== null){
             const filtered =  products.filter(product=>{
@@ -60,7 +58,6 @@ const ProductMain = () => {
                     return true
                 }
             })
-            console.log(filtered)
             return filtered
         } else if (selectedCategory !== 'all' && searchTerm === null){
             const filtered = products.filter(productObj=>productObj.product_type.name === selectedCategory)

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import authManager from "../../modules/authManager.js";
+import authManager from "../../modules/AuthManager.js";
 
 const Login = ({ routerProps }) => {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -7,7 +7,6 @@ const Login = ({ routerProps }) => {
     username: "",
     password: "",
   });
-  const password = useRef();
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...credentials };
@@ -27,13 +26,19 @@ const Login = ({ routerProps }) => {
       phone_number: credentials.phone_number,
     };
     //   Login User
-    authManager.registerUser(customerCreds).then(() => {
-      // if ("valid" in parsedResponse && parsedResponse.valid && "token" in parsedResponse) {
-      //   sessionStorage.setItem("token", parsedResponse.token)
-        setIsLoggedIn(true);
-        routerProps.history.push("/");
+    return authManager
+      .registerUser(customerCreds)
+      .then((parsedResponse) => {
+        if (
+          "valid" in parsedResponse &&
+          parsedResponse.valid &&
+          "token" in parsedResponse
+        ) {
+          sessionStorage.setItem("token", parsedResponse.token);
+          setIsLoggedIn(true);
+        }
       })
-  //   });
+      .then(() => routerProps.history.push("/"));
   };
 
   return (
@@ -53,13 +58,11 @@ const Login = ({ routerProps }) => {
         <fieldset>
           <label htmlFor="password">Password</label>
           <input
-            ref={password}
+            onChange={handleFieldChange}
             type="password"
-            name="password"
             id="password"
             placeholder="Password"
-            className="form-control"
-            required
+            value={credentials.password}
           />
         </fieldset>
         <fieldset>

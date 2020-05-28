@@ -34,7 +34,7 @@ const BodyRouter = () => {
       />
       <Route
         exact
-        path="/products/:productId(\d+)"
+        path="/buy/:productId(\d+)"
         render={(routerProps) => {
           return (
             <ProductDetail
@@ -42,12 +42,6 @@ const BodyRouter = () => {
               routerProps={routerProps}
             />
           );
-        }}
-      />
-      <Route
-        path="/buy"
-        render={(routerProps) => {
-          return <ProductsMain routerProps={routerProps} />;
         }}
       />
       <Route
