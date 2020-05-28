@@ -10,10 +10,6 @@ const UserProfile = () => {
     });
   };
 
-  const getCustomerByToken = (token) => {
-      
-  }
-
   useEffect(() => {
     getCurrentCustomer(1);
   }, []);
