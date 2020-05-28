@@ -6,8 +6,17 @@ import productManager from "../../modules/productManager";
 const ProductDetail = (routerProps) => {
   const productId = routerProps.productId;
   const props = routerProps.routerProps;
-  console.log(routerProps);
   const [productDetails, setProductDetails] = useState({});
+  const [cart, setCart] = useState({});
+
+  const addToCart = async () => {
+    try {
+      const updateCart = await productManager.addProductToCart(productId);
+      setCart(updateCart);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     const getProductDetail = async () => {
@@ -21,8 +30,9 @@ const ProductDetail = (routerProps) => {
 
   return (
     <>
-      <div></div>
+      <div>
       <h1>{productDetails.title}</h1>
+      <button className='buy_product' onClick={addToCart}>Buy</button>
       <ul>
         <li>Price: ${productDetails.price}</li>
         <li>Description: {productDetails.description}</li>
@@ -36,6 +46,7 @@ const ProductDetail = (routerProps) => {
       >
         Back
       </button>
+      </div>
     </>
   );
 };
