@@ -5,6 +5,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ProductsMain from "./buy/Products";
 import Profile from "./userProfile/Profile";
+import Sell from "./sell/Sell";
 
 const BodyRouter = () => {
   return (
@@ -35,6 +36,13 @@ const BodyRouter = () => {
         path="/buy"
         render={(routerProps) => {
           return <ProductsMain routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/sell"
+        render={(routerProps) => {
+          return <Sell routerProps={routerProps} />;
         }}
       />
       <Route
