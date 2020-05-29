@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "./homePage/HomePage";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import ProductDetail from "./buy/ProductDetail";
 import ProductsMain from "./buy/Products";
 import Profile from "./userProfile/Profile";
 import Sell from "./sell/Sell";
@@ -33,23 +34,35 @@ const BodyRouter = () => {
       />
       <Route
         exact
+        path="/buy/:productId(\d+)"
+        render={(routerProps) => {
+          return (
+            <ProductDetail
+              productId={parseInt(routerProps.match.params.productId)}
+              routerProps={routerProps}
+            />
+          );
+        }}
+      />
+      <Route
+        exact
         path="/buy"
         render={(routerProps) => {
           return <ProductsMain routerProps={routerProps} />;
         }}
-      />
-      <Route
+        />
+        <Route
         exact
         path="/sell"
         render={(routerProps) => {
           return <Sell routerProps={routerProps} />;
         }}
-      />
+        />
       <Route
         exact
         path="/myprofile"
         render={(routerProps) => {
-          return <Profile routerProps={routerProps} />;
+        return <Profile routerProps={routerProps} />;
         }}
       />
     </Switch>

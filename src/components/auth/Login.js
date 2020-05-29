@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import authManager from "../../modules/authManager.js";
+import authManager from "../../modules/AuthManager.js";
 
 const Login = ({ routerProps }) => {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -13,7 +13,6 @@ const Login = ({ routerProps }) => {
     stateToChange[evt.target.id] = evt.target.value;
     setCredentials(stateToChange);
   };
-
   const handleLogin = (e) => {
     e.preventDefault();
     const customerCreds = {
