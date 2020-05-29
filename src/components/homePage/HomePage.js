@@ -1,9 +1,10 @@
 import React from 'react'
+import './HomePage.css'
 // import ProductList from "../products/ProductList"
 
-const HomePage = ({routerProps}) => {
+const HomePage = () => {
     return(
-        <div>
+        <div id='container'>
         </div>
     );
 };

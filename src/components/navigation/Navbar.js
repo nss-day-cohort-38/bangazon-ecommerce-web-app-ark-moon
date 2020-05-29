@@ -9,7 +9,7 @@ const Navbar = () => {
   const handleClick = e => {
     changeSelected(e.key);
     if(e.key){
-      window.location = `${e.key}`
+      window.location = `http://localhost:3000/${e.key}`
     }
   };
 
