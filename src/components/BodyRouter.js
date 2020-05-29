@@ -55,7 +55,13 @@ const BodyRouter = () => {
         exact
         path="/sell"
         render={(routerProps) => {
-          return <Sell routerProps={routerProps} />;
+          if(sessionStorage.getItem('token')){
+            return <Sell routerProps={routerProps}/>;
+          } else {
+            return <Login routerProps={routerProps} />;
+          }
+        
+
         }}
         />
       <Route

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import productManager from "../../modules/productManager.js"
-
+import {Input, Checkbox} from 'antd'
 
 const Sell = ({routerProps}) => {
 
@@ -53,36 +53,30 @@ useEffect(() => {
 const localPickupConditional = () => { document.getElementById("locationField").classList.toggle("hidden")}
 
   return (
-   <>
+   <div id='greyBackground'>
+       <section id='creationForm'>
    <form onSubmit={handleSubmit}>
-            <h1>Product</h1>
+            <h1>Sell A Product</h1>
             <fieldset>
-                <label htmlFor="title">Title</label>
-                <input onChange={handleFieldChange} type="text" id="title" placeholder="Title" value={productInfo.title} maxLength="50" required />
+                <Input onChange={handleFieldChange} type="text" id="title" placeholder="Title" value={productInfo.title} maxLength="50" required />
             </fieldset>
             <fieldset>
-                <label htmlFor="price">Price</label>
-                <input onChange={handleFieldChange} type="number" id="price" placeholder="0.00" min="0" step=".01" value={productInfo.price} required />
+                <Input onChange={handleFieldChange} type="number" id="price" placeholder="Price" min="0" step=".01" value={productInfo.price} required />
             </fieldset>
             <fieldset>
-                <label htmlFor="description">Description</label>
-                <input onChange={handleFieldChange} type="text" id="description" placeholder="Description" value={productInfo.description}required />
+                <Input onChange={handleFieldChange} type="text" id="description" placeholder="Description" value={productInfo.description}required />
             </fieldset>
             <fieldset>
-                <label htmlFor="quantity">Quantity</label>
-                <input onChange={handleFieldChange} type="number" id="quantity" placeholder="Quantity" value={productInfo.quantity}required />
+                <Input onChange={handleFieldChange} type="number" id="quantity" placeholder="Quantity" value={productInfo.quantity}required />
             </fieldset>
             <fieldset>
-                 <label>Local Pickup </label>
-                 <input type="checkbox" value={localPickup} onChange = {handleCheckBox}></input>
+                 <Checkbox value={localPickup} onChange = {handleCheckBox}>Local Pickup</Checkbox>
              </fieldset>
              <fieldset id="locationField">
-                 <label htmlFor="location">Location</label>
-                 <input onChange={handleFieldChange} type="text" id="location" placeholder="Location" value={productInfo.location} />
+                 <Input onChange={handleFieldChange} type="text" id="location" placeholder="Location"  />
              </fieldset>
             <fieldset>
-                <label htmlFor="image_path">Image Path</label>
-                <input onChange={handleFieldChange} type="text" id="image_path" placeholder="Image Path" value={productInfo.image_path}required />
+                <Input onChange={handleFieldChange} type="text" id="image_path" placeholder="Image Path" value={productInfo.image_path}required />
             </fieldset>
             <fieldset>
                 <label>Product Types:</label>
@@ -97,10 +91,11 @@ const localPickupConditional = () => { document.getElementById("locationField").
                </select>
             </fieldset>
             <fieldset>
-            <button type="Submit">Add Product</button>
+            <button className='clickable' type="Submit">Add Product</button>
             </fieldset>
         </form>
-   </>
+        </section>
+   </div>
   );
 };
 
