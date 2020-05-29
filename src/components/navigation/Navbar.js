@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Layout, Menu, Dropdown } from 'antd';
 import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined, SmileOutlined } from '@ant-design/icons';
 import logo from "../../images/BangazonLogo.png"
@@ -7,7 +7,6 @@ const { Header } = Layout;
 const Navbar = () => {
   const [current, changeSelected] = useState()
   const handleClick = e => {
-    console.log('click ', e);
     changeSelected(e.key);
     if(e.key){
       window.location = `${e.key}`

@@ -15,12 +15,10 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount, chan
         productAPI.getProductTypes().then(resp=>{
             createCategories(resp)
             setLoading(false)
-            console.log(categoryAmount)
         });
     }
 
     function selectCategory(e){
-        console.log(e.key)
         changeCategory(e.key)
         changeSearchTerm(null)
 
@@ -30,7 +28,6 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount, chan
         if (loading === true){
             return <Spin size="small" style={{'marginLeft':'50px'}}/>
         } else {
-            console.log(categoryAmount)
             return categories.map(category=>{
                 if (categoryAmount && (categoryAmount[`${category.name}`] !== undefined)){
                     return (

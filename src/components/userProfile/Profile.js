@@ -14,7 +14,6 @@ const UserProfile = () => {
     getCurrentCustomer(sessionStorage.getItem("customerId"));
   }, []);
 
-  console.log(customer);
 
   if (customer) {
     return (

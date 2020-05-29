@@ -5,14 +5,15 @@ import { UnorderedListOutlined, MailOutlined, ShoppingCartOutlined } from '@ant-
 
 const { Meta } = Card;
 
-const ProductCard = ({productObj}) => {
+const ProductCard = ({productObj, routerProps}) => {
 
-    function routePath(){
+  function routePath() {
         window.location = `/buy/${productObj.id}`
     }
 
   return(
   <Card
+    onClick={() => routerProps.history.push(`products/${productObj.id}`)}
     className='productCard'
     cover={
       <img
