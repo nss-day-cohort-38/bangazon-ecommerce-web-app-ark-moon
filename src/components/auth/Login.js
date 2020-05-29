@@ -36,7 +36,8 @@ const Login = ({ routerProps }) => {
   };
 
   return (
-    <>
+    <div id='greyBackground'>
+      <section id='creationForm'>
       <form onSubmit={handleLogin}>
         <h1>Login</h1>
         <fieldset>
@@ -64,7 +65,8 @@ const Login = ({ routerProps }) => {
         </fieldset>
       </form>
       <a href="http://localhost:3000/register">Register</a>
-    </>
+      </section>
+    </div>
   );
 };
 

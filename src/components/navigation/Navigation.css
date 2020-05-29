@@ -13,7 +13,9 @@
   background-color: var(--bangazonBlack);
   z-index: 1;
 }
-
+.navMenu{
+  margin-right: 40px !important;
+}
 .navMenu, .navMenu a{
   color: lightgray !important;
   background: none !important;

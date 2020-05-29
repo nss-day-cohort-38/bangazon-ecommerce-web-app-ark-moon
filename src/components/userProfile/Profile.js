@@ -17,7 +17,8 @@ const UserProfile = () => {
 
   if (customer) {
     return (
-      <>
+      <div class="detailsItem">
+        <img className='detailsImage' src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_24787.png&f=1&nofb=1'/>
         <h1>
           {customer.user.first_name} {customer.user.last_name}
         </h1>
@@ -26,7 +27,7 @@ const UserProfile = () => {
         </h3>
         <h3>{customer.phone_number}</h3>
         <h3>{customer.address}</h3>
-      </>
+      </div>
     );
   } else {
     return <h1>Ain't got shit!</h1>;

@@ -42,7 +42,8 @@ const Login = ({ routerProps }) => {
   };
 
   return (
-    <>
+    <div id='greyBackground'>
+      <section id='creationForm'>
       <form onSubmit={handleRegister}>
         <h1>Register</h1>
         <fieldset>
@@ -119,7 +120,8 @@ const Login = ({ routerProps }) => {
           <button type="Submit">Register</button>
         </fieldset>
       </form>
-    </>
+      </section>
+    </div>
   );
 };
 
