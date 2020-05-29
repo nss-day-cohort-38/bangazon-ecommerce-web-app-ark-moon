@@ -43,21 +43,22 @@ const ProductDetail = (routerProps) => {
 
   return (
     <>
-      <div>
-      <h1>{productDetails.title}</h1>
-      <button className='buy_product' onClick={addToCart}>Add To Cart</button>
-      <ul>
-        <li>Price: ${productDetails.price}</li>
-        <li>Description: {productDetails.description}</li>
-        <li>Quantity Left In Stock: {productDetails.quantity}</li>
-        <li>Location: {productDetails.location}</li>
-        <li>Created At: {productDetails.created_at}</li>
-      </ul>
-      <button
-        className="product_detail_back_btn"
-        onClick={() => props.history.push("/buy")}
-      >
-        Back
+      <div className='detailsItem'>
+        <img className='detailsImage' src={productDetails.image_path} />
+        <h1>{productDetails.title}</h1>
+        <button className='buy_product' onClick={addToCart}>Add To Cart</button>
+        <ul>
+          <li>Price: ${productDetails.price}</li>
+          <li>Description: {productDetails.description}</li>
+          <li>Quantity Left In Stock: {productDetails.quantity}</li>
+          <li>Location: {productDetails.location}</li>
+          <li>Created At: {productDetails.created_at}</li>
+        </ul>
+        <button
+          className="product_detail_back_btn"
+          onClick={() => props.history.push("/buy")}
+        >
+          Back
       </button>
       </div>
     </>
