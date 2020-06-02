@@ -24,10 +24,13 @@ const [localPickup, setIsLocalPickup] = useState(false)
           "description": productInfo.description, 
           "quantity": parseInt(productInfo.quantity), 
           "location": productInfo.location, 
-          "image_path": productInfo.image_path,
+          "image_path": productInfo.image_path.split("\\")[2].strip(),
           "product_type": parseInt(productInfo.product_type)
       }
     
+    
+//   product.image_path.split("\\")[2]
+
    
     productManager.postSellableProduct(product).then((productReturn) => {
         routerProps.history.push(`/buy/${productReturn.id}`)
