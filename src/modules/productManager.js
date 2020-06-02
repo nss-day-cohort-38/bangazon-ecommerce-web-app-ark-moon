@@ -39,7 +39,7 @@ const productAPI = {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Token ${sessionStorage.getItem("token")}`,
+        // Authorization: `Token ${sessionStorage.getItem("token")}`,
       },
     });
     return await resp.json();
