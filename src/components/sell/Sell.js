@@ -57,7 +57,7 @@ const localPickupConditional = () => { document.getElementById("locationField").
   return (
    <div id='greyBackground'>
        <section id='creationForm'>
-   <form onSubmit={handleSubmit}>
+   <form onSubmit={handleSubmit} enctype='multipart/form-data'>
             <h1>Sell A Product</h1>
             <fieldset>
                 <Input onChange={handleFieldChange} type="text" id="title" placeholder="Title" value={productInfo.title} maxLength="50" required />
@@ -78,7 +78,7 @@ const localPickupConditional = () => { document.getElementById("locationField").
                  <Input onChange={handleFieldChange} type="text" id="location" placeholder="Location"  />
              </fieldset>
             <fieldset>
-                <Input onChange={handleFieldChange} type="text" id="image_path" placeholder="Image Path" value={productInfo.image_path}required />
+                <Input onChange={handleFieldChange} type="file" id="image_path" placeholder="Image Path"accept="image/x-png,image/gif,image/jpeg" value={productInfo.image_path}required />
             </fieldset>
             <fieldset>
                 <label>Product Types:</label>
