@@ -37,7 +37,7 @@ const ProductCard = ({productObj, routerProps}) => {
   >
     <Meta
       title={productObj.title}
-      description={`${productObj.product_type.name} ${ productObj.location !== 'none' ? `in ${productObj.location}`: null}      $${productObj.price}           Quantity: ${productObj.quantity}`}
+      description={`${productObj.product_type.name} ${ productObj.location !== 'none' ? `in ${productObj.location}`: ""}      $${productObj.price}           Quantity: ${productObj.quantity}`}
     />
   </Card>
   );
