@@ -45,6 +45,10 @@ const ProductDetail = (routerProps) => {
     getProductDetail();
   }, []);
 
+  const dateFormatter = (dateString) => {
+    return dateString.split("T")[0];
+  };
+
   return (
     <>
       <div className="detailsItem">
@@ -59,8 +63,12 @@ const ProductDetail = (routerProps) => {
           <li>Price: ${productDetails.price}</li>
           <li>Description: {productDetails.description}</li>
           <li>Quantity Left In Stock: {productDetails.quantity}</li>
-          <li>Location: {productDetails.location}</li>
-          <li>Created At: {productDetails.created_at}</li>
+          {productDetails.location !== "none" ? (
+            <li>Location: {productDetails.location}</li>
+          ) : null}
+          {productDetails.created_at ? (
+            <li>Posted on {dateFormatter(productDetails.created_at)}</li>
+          ) : null}
         </ul>
         <button
           className="product_detail_back_btn"

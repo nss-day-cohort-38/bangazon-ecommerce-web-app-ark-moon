@@ -16,7 +16,7 @@ const ProductCard = ({ productObj, routerProps }) => {
   }
 
   function goToLogin() {
-    window.location = "/login"
+    window.location = "/login";
   }
 
   return (
@@ -46,7 +46,13 @@ const ProductCard = ({ productObj, routerProps }) => {
         <Tooltip placement="right" title="Add to Cart">
           {isLoggedIn ? (
             <ShoppingCartOutlined className="clickable" key="addToCart" />
-          ) : <ShoppingCartOutlined className="clickable" key="login" onClick={goToLogin} />}
+          ) : (
+            <ShoppingCartOutlined
+              className="clickable"
+              key="login"
+              onClick={goToLogin}
+            />
+          )}
         </Tooltip>,
       ]}
     >
