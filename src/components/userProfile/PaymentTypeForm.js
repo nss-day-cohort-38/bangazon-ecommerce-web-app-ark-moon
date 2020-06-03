@@ -19,11 +19,10 @@ const PaymentTypeForm = ({ routerProps }) => {
   const buildPaymentType = (evt) => {
     evt.preventDefault();
     const newPaymentType = {
-      "merchant_name": paymentType.merchantName,
-      "account_number": paymentType.accountNum,
-      "expiration_date": paymentType.expirationDate
+      merchant_name: paymentType.merchantName,
+      account_number: paymentType.accountNum,
+      expiration_date: paymentType.expirationDate,
     };
-    console.log(newPaymentType)
     if (
       newPaymentType.merchantName === "" ||
       newPaymentType.accountNum === "" ||
