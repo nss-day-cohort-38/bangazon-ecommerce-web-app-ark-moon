@@ -7,6 +7,7 @@ import ProductDetail from "./buy/ProductDetail";
 import ProductsMain from "./buy/Products";
 import Profile from "./userProfile/Profile";
 import Sell from "./sell/Sell";
+import ShoppingCartList from "./orders/ShoppingCartList";
 
 const BodyRouter = () => {
   return (
@@ -69,6 +70,13 @@ const BodyRouter = () => {
         path="/myprofile"
         render={(routerProps) => {
         return <Profile routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/cart"
+        render={(routerProps) => {
+        return <ShoppingCartList routerProps={routerProps} />;
         }}
       />
     </Switch>

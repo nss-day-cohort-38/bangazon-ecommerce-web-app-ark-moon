@@ -1,8 +1,8 @@
 const orderProductBaseUrl = "http://localhost:8000/orderproducts";
 
 const orderProductManager = {
-    getOrderProducts() {
-        return fetch(orderProductBaseUrl, {
+    getOrderProductsByOrder(orderId) {
+        return fetch(`${orderProductBaseUrl}?order_id=${orderId}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
