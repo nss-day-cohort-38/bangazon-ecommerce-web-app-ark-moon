@@ -8,8 +8,9 @@ import ProductsMain from "./buy/Products";
 import Profile from "./userProfile/Profile";
 import Sell from "./sell/Sell";
 import ShoppingCartList from "./orders/ShoppingCartList";
+import PaymentTypeForm from "./userProfile/PaymentTypeForm";
 
-const BodyRouter = () => {
+const BodyRouter = (props) => {
   return (
     <Switch>
       <Route
@@ -49,27 +50,32 @@ const BodyRouter = () => {
         exact
         path="/buy"
         render={(routerProps) => {
-          return <ProductsMain routerProps={routerProps} />;
+          return <ProductsMain routerProps={routerProps} locationBoolean={props.locationBoolean} searchTerm={props.searchTerm} changeSearchTerm={props.changeSearchTerm}/>;
         }}
-        />
-        <Route
+      />
+      <Route
         exact
         path="/sell"
         render={(routerProps) => {
-          if(sessionStorage.getItem('token')){
-            return <Sell routerProps={routerProps}/>;
+          if (sessionStorage.getItem("token")) {
+            return <Sell routerProps={routerProps} />;
           } else {
             return <Login routerProps={routerProps} />;
           }
-        
-
         }}
-        />
+      />
       <Route
         exact
         path="/myprofile"
         render={(routerProps) => {
-        return <Profile routerProps={routerProps} />;
+          return <Profile routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/newpayment"
+        render={(routerProps) => {
+          return <PaymentTypeForm routerProps={routerProps} />;
         }}
       />
       <Route
