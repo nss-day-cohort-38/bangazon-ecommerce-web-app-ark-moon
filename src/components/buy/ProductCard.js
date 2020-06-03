@@ -27,7 +27,7 @@ const ProductCard = ({ productObj, routerProps }) => {
         <img
           className="clickable"
           onClick={routePath}
-          alt="product image"
+          alt="product"
           src={productObj.image_path}
         />
       }

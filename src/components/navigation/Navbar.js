@@ -8,10 +8,11 @@ const { Header } = Layout;
 
 const Navbar = ({locationBoolean, setLocationBoolean, changeSearchTerm, routerProps}) => {
   const [current, changeSelected] = useState()
+  
   const handleClick = e => {
     changeSelected(e.key);
     if(e.key){
-      window.location = `http://localhost:3000/${e.key}`
+      routerProps.history.push(`/${e.key}`)
     }
   };
 
