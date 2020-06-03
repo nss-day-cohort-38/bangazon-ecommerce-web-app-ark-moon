@@ -9,6 +9,11 @@ const PaymentTypeManager = {
                 "Authorization": `Token ${sessionStorage.getItem("token")}`
             }
         }).then((resp) => resp.json())
+    },
+    deletePaymentType(id) {
+        return fetch(`${baseUrl}/paymenttypes/${id}`, {
+            method: "DELETE"
+        });
     }
 }
 

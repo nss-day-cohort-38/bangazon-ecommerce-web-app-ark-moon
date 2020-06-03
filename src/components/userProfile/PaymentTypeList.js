@@ -11,11 +11,17 @@ const PaymentTypeList = () => {
     });
   }
 
+  const deletePaymentType = (id) => {
+    paymentTypeManager.deletePaymentType(id).then(() => {
+      paymentTypeManager.getPaymentListByCustomer().then(setPaymentTypes);
+    });
+  };
+
   const createPaymentCards = () => {
     if (paymentTypes) {
       return paymentTypes.map((paymentType) => {
         return (
-          <PaymentTypeCard key={paymentType.id} paymentType={paymentType} />
+          <PaymentTypeCard key={paymentType.id} paymentType={paymentType} deletePaymentType={deletePaymentType} />
         );
       });
     }
