@@ -55,6 +55,7 @@ const OrdersList = (routerProps) => {
                 <button type="button" onClick={() => props.history.push("/cart")}>Back to My Cart</button>
                 <button type="button" onClick={() => props.history.push("/pastorders")}>View Past Orders</button>
                 <h1>Current Open Order:</h1>
+                <h2>Please verify the items in your order and then click 'complete order'.</h2>
                 <div>
                     {shoppingCart.map(shoppingCart =>
                         <OrderCard
