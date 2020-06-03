@@ -26,7 +26,7 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount, chan
 
     const categoryMenuItems = () => {
         if (loading === true){
-            return <Spin size="small" style={{'marginLeft':'50px'}}/>
+            return <Menu.Item><Spin size="small" style={{'marginLeft':'50px'}}/></Menu.Item>
         } else {
             return categories.map(category=>{
                 if (categoryAmount && (categoryAmount[`${category.name}`] !== undefined)){

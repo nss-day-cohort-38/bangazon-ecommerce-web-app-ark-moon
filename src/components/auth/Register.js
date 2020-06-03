@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import authManager from "../../modules/AuthManager.js";
 
 const Login = ({ routerProps }) => {

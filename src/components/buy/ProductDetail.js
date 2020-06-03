@@ -52,7 +52,7 @@ const ProductDetail = (routerProps) => {
   return (
     <>
       <div className="detailsItem">
-        <img className="detailsImage" src={productDetails.image_path} />
+        <img className="detailsImage" src={productDetails.image_path} alt="details"/>
         <h1>{productDetails.title}</h1>
         {isLoggedIn ? (
           <button className="buy_product" onClick={addToCart}>
