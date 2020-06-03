@@ -9,6 +9,8 @@ import Profile from "./userProfile/Profile";
 import Sell from "./sell/Sell";
 import ShoppingCartList from "./orders/ShoppingCartList";
 import PaymentTypeForm from "./userProfile/PaymentTypeForm";
+import OrdersList from "./orders/OrdersList";
+import PastOrdersList from "./orders/PastOrdersList";
 
 const BodyRouter = (props) => {
   return (
@@ -83,6 +85,20 @@ const BodyRouter = (props) => {
         path="/cart"
         render={(routerProps) => {
         return <ShoppingCartList routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/currentorder"
+        render={(routerProps) => {
+        return <OrdersList routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/pastorders"
+        render={(routerProps) => {
+        return <PastOrdersList routerProps={routerProps} />;
         }}
       />
     </Switch>

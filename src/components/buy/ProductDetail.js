@@ -11,7 +11,6 @@ const ProductDetail = (routerProps) => {
 
   const [productDetails, setProductDetails] = useState({});
   const [orders, setOrders] = useState([]);
-  const [orderProduct, setOrderProduct] = useState({ "orderId": 0, "productId": 0 })
 
   const isLoggedIn = sessionStorage.getItem("token");
 

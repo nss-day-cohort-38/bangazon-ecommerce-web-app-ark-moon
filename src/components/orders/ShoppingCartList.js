@@ -5,11 +5,13 @@ import productManager from '../../modules/productManager';
 import ShoppingCartCard from './ShoppingCartCard';
 
 
-const ShoppingCartList = (props) => {
+const ShoppingCartList = (routerProps) => {
     const [shoppingCart, setShoppingCart] = useState([]);
     const [orders, setOrders] = useState([]);
     const [openOrder, setOpenOrder] = useState({});
     const [products, setProducts] = useState([]);
+
+    const props = routerProps.routerProps;
 
     const getProducts = () => {
         productManager.getProducts().then(products => {
@@ -41,6 +43,7 @@ const ShoppingCartList = (props) => {
                 <h1>Shopping Cart:</h1>
                 <div>
                     <h3>You have no items in your cart</h3>
+                    <button type="button" onClick={() => props.history.push("/buy")}>Browse Products</button>
                 </div>
             </>
         )
@@ -53,10 +56,11 @@ const ShoppingCartList = (props) => {
                         <ShoppingCartCard
                             key={shoppingCart.id}
                             shoppingCart={shoppingCart}
-                            {...props}
+                            {...routerProps}
                         />
                     )}
                 </div>
+                <button type="button" onClick={() => props.history.push("/currentorder")}>Complete Order</button>
             </>
         )
     }
