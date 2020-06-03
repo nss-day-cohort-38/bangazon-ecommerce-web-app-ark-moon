@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CustomerManager from "../../modules/customerManager";
+import PaymentTypeList from "./PaymentTypeList"
 
-const UserProfile = () => {
+const UserProfile = ({routerProps}) => {
   const [customer, setCustomer] = useState(null);
 
   const getCurrentCustomer = (customer_id) => {
@@ -27,10 +28,12 @@ const UserProfile = () => {
         </h3>
         <h3>{customer.phone_number}</h3>
         <h3>{customer.address}</h3>
+        <PaymentTypeList />
+        <button onClick={() => routerProps.history.push("/newpayment")}>Add New Payment Type</button>
       </div>
     );
   } else {
-    return <h1>Ain't got shit!</h1>;
+    return <h1>Loading user...</h1>;
   }
 };
 
