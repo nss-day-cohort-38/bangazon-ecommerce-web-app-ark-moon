@@ -9,7 +9,7 @@ import Profile from "./userProfile/Profile";
 import Sell from "./sell/Sell";
 import PaymentTypeForm from "./userProfile/PaymentTypeForm";
 
-const BodyRouter = () => {
+const BodyRouter = (props) => {
   return (
     <Switch>
       <Route
@@ -49,7 +49,7 @@ const BodyRouter = () => {
         exact
         path="/buy"
         render={(routerProps) => {
-          return <ProductsMain routerProps={routerProps} />;
+          return <ProductsMain routerProps={routerProps} locationBoolean={props.locationBoolean} searchTerm={props.searchTerm} changeSearchTerm={props.changeSearchTerm}/>;
         }}
       />
       <Route
