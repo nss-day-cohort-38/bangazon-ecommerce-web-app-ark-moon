@@ -10,6 +10,17 @@ const PaymentTypeManager = {
             }
         }).then((resp) => resp.json())
     },
+    addNewPaymentType(newPaymentType) {
+        return fetch(`${baseUrl}/paymenttypes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Token ${sessionStorage.getItem("token")}`
+            },
+            body: JSON.stringify(newPaymentType)
+        }).then(resp => resp.json())
+    },
     deletePaymentType(id) {
         return fetch(`${baseUrl}/paymenttypes/${id}`, {
             method: "DELETE"

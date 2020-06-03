@@ -7,6 +7,7 @@ import ProductDetail from "./buy/ProductDetail";
 import ProductsMain from "./buy/Products";
 import Profile from "./userProfile/Profile";
 import Sell from "./sell/Sell";
+import PaymentTypeForm from "./userProfile/PaymentTypeForm";
 
 const BodyRouter = () => {
   return (
@@ -50,25 +51,30 @@ const BodyRouter = () => {
         render={(routerProps) => {
           return <ProductsMain routerProps={routerProps} />;
         }}
-        />
-        <Route
+      />
+      <Route
         exact
         path="/sell"
         render={(routerProps) => {
-          if(sessionStorage.getItem('token')){
-            return <Sell routerProps={routerProps}/>;
+          if (sessionStorage.getItem("token")) {
+            return <Sell routerProps={routerProps} />;
           } else {
             return <Login routerProps={routerProps} />;
           }
-        
-
         }}
-        />
+      />
       <Route
         exact
         path="/myprofile"
         render={(routerProps) => {
-        return <Profile routerProps={routerProps} />;
+          return <Profile routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/newpayment"
+        render={(routerProps) => {
+          return <PaymentTypeForm routerProps={routerProps} />;
         }}
       />
     </Switch>
