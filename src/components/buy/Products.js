@@ -3,19 +3,13 @@ import productAPI from '../../modules/productManager'
 import CategorySidebar from './CategorySidebar'
 import ProductCard from './ProductCard'
 import ProductNavbar from './ProductNavbar'
-import {Menu, Input, Spin, Switch} from 'antd'
+import { Input, Spin } from 'antd'
 import './Buy.css'
 
-const {Search} = Input
-
-const ProductMain = () => {
+const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
     const [selectedCategory, changeCategory] = useState('all')
-    const [searchTerm, changeSearchTerm] = useState(null)
-    const [searchedLocation, changeSearchedLocation] = useState(null)
     const [products, addAllProducts] = useState(null)
     const [categoryAmount, changeCategoryAmount] = useState()
-    const [locationAmount, changeLocationAmount] = useState()
-    const [locationBoolean, setLocationBoolean] = useState(false)
 
     function getProducts(){
         productAPI.getProducts().then(resp=>{
@@ -28,14 +22,8 @@ const ProductMain = () => {
                 }else{
                     categoryObjects[`${product.product_type.name}`] += 1
                 };
-                if (locationObjects[`${product.location}`] === undefined){
-                    locationObjects[`${product.location}`] = 1
-                }else{
-                    locationObjects[`${product.location}`] += 1
-                }
 
             })
-            changeLocationAmount(locationObjects)
             changeCategoryAmount(categoryObjects)
         });
         
@@ -90,6 +78,14 @@ const ProductMain = () => {
     
     };
 
+    function searchedTermConditional(){
+        if(searchTerm){
+            return (
+            <p className='searchTerm'>Searching for: {searchTerm} <button onClick={()=>changeSearchTerm(null)}>X</button></p>
+            )
+        }
+    }
+
     useEffect(()=>{
         getProducts()
     },[])
@@ -98,16 +94,15 @@ const ProductMain = () => {
         createProductCards()
     },[products])
     useEffect(()=>{
-        locationFilter()
+        createProductCards()
     },[locationBoolean])
 
     return (
         <>
-        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount} changeSearchTerm={changeSearchTerm}/>
+        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount} />
         <div>
-            <ProductNavbar changeSearchTerm={changeSearchTerm} setLocationBoolean={setLocationBoolean} locationBoolean={locationBoolean} locationAmount={locationAmount} changeSearchedLocation={changeSearchedLocation}/>
-        
             <div className='productContainer'>
+            {searchedTermConditional()}
                 {createProductCards()}
             </div>
         </div>

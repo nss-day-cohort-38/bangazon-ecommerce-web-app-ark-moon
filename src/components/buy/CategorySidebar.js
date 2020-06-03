@@ -7,7 +7,7 @@ import productAPI from '../../modules/productManager'
 
 const { SubMenu } = Menu;
 
-const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount, changeSearchTerm}) => {
+const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => {
     const [categories, createCategories] = useState()
     const [loading, setLoading] = useState(true)
 
@@ -20,13 +20,12 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount, chan
 
     function selectCategory(e){
         changeCategory(e.key)
-        changeSearchTerm(null)
 
     }
 
     const categoryMenuItems = () => {
         if (loading === true){
-            return <Spin size="small" style={{'marginLeft':'50px'}}/>
+            return <Menu.Item><Spin size="small" style={{'marginLeft':'50px'}}/></Menu.Item>
         } else {
             return categories.map(category=>{
                 if (categoryAmount && (categoryAmount[`${category.name}`] !== undefined)){

@@ -3,13 +3,16 @@ import { Layout, Menu, Dropdown } from 'antd';
 import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined, SmileOutlined } from '@ant-design/icons';
 import logo from "../../images/BangazonLogo.png"
 import profileIcon from "../../images/profileIcon.png"
+import ProductNavbar from '../buy/ProductNavbar'
 const { Header } = Layout;
-const Navbar = () => {
+
+const Navbar = ({locationBoolean, setLocationBoolean, changeSearchTerm, routerProps}) => {
   const [current, changeSelected] = useState()
+  
   const handleClick = e => {
     changeSelected(e.key);
     if(e.key){
-      window.location = `http://localhost:3000/${e.key}`
+      routerProps.history.push(`/${e.key}`)
     }
   };
 
@@ -23,6 +26,7 @@ const Navbar = () => {
     }
 
     if (sessionStorage.getItem('token') !== null) {
+      console.log(routerProps)
       return (
         <Menu selectedKeys={[current]} onClick={handleClick}>
           <Menu.Item key="cart" icon={<ShoppingCartOutlined />} href='/mycart'>
@@ -41,6 +45,7 @@ const Navbar = () => {
         </Menu>
       );
     } else {
+      console.log(routerProps)
       return (
       <Menu>
         <Menu.Item icon={<SmileOutlined/>} onClick={login}>
@@ -63,6 +68,7 @@ const Navbar = () => {
   return (
     <Header id='navContainer'>
       <a href='/'><img id='navLogo' className='logo' src={logo} alt='Bangazon Logo' /></a>
+      <ProductNavbar changeSearchTerm={changeSearchTerm} setLocationBoolean={setLocationBoolean} locationBoolean={locationBoolean} routerProps={routerProps}/>
       <Menu className='navMenu' onClick={handleClick} selectedKeys={[current]} mode="horizontal" >
         <Menu.Item key="buy" icon={<GiftFilled />}>
           Buy
