@@ -25,8 +25,10 @@ const ProductDetail = (routerProps) => {
   }, []);
 
   const addToCart = () => {
+    // filter out just the single open order from all the user's orders
     const openOrder = orders.filter(order => order.payment_type === null)
 
+    // if there is already an open order, add the product to that order
     if (openOrder.length === 1) {
       const newOrderProduct = {
         "order_id": openOrder[0].id,
@@ -37,6 +39,7 @@ const ProductDetail = (routerProps) => {
         window.alert(`${productDetails.title} was added to your cart`)
       })
     } else {
+      //if there is not already an open order, open a new order and then add the product to that new order
       const newOrderProduct = {
         "product_id": productDetails.id
       }

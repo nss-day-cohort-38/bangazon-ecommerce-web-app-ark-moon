@@ -20,13 +20,17 @@ const OrdersList = (routerProps) => {
     }
 
     const getShoppingCartProducts = () => {
+        // get all of the users orders
         orderManager.getUserOrders().then(orders => {
             setOrders(orders)
+            // filter out just the single open order
             const openOrder = orders.filter(order => order.payment_type === null)
             setOpenOrder(openOrder)
+            // if there is an open order, get the products associated with that order
             if (openOrder.length !== 0) {
                 orderProductManager.getOrderProductsByOrder(openOrder[0].id).then(products => {
                     setShoppingCart(products)
+                    // add the price of each product to the order total
                     let orderTotal = 0
                     products.forEach(product => orderTotal += parseInt(product.product.price))
                     setTotal(orderTotal.toFixed(2))
