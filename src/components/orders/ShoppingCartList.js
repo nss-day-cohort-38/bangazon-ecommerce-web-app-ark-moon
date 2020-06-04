@@ -39,8 +39,8 @@ const ShoppingCartList = (routerProps) => {
         getShoppingCartProducts();
         getProducts();
     }, []);
-
-    if (openOrder.length === 0) {
+    
+    if (openOrder.length === 0 || shoppingCart.length === 0) {
         return (
             <>
                 <h1>Shopping Cart:</h1>
