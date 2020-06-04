@@ -50,6 +50,7 @@ const ShoppingCartList = (routerProps) => {
     } else {
         return (
             <>
+                <button type="button" onClick={() => props.history.push("/buy")}>Browse More Products</button>
                 <h1>Shopping Cart:</h1>
                 <div>
                     {shoppingCart.map(shoppingCart =>
@@ -60,7 +61,7 @@ const ShoppingCartList = (routerProps) => {
                         />
                     )}
                 </div>
-                <button type="button" onClick={() => props.history.push("/currentorder")}>Complete Order</button>
+                <button type="button" onClick={() => props.history.push("/currentorder")}>Review Order</button>
             </>
         )
     }

@@ -9,6 +9,7 @@ const OrdersList = (routerProps) => {
     const [orders, setOrders] = useState([]);
     const [openOrder, setOpenOrder] = useState({});
     const [products, setProducts] = useState([]);
+    const [total, setTotal] = useState([]);
 
     const props = routerProps.routerProps;
 
@@ -26,8 +27,11 @@ const OrdersList = (routerProps) => {
             if (openOrder.length !== 0) {
                 orderProductManager.getOrderProductsByOrder(openOrder[0].id).then(products => {
                     setShoppingCart(products)
+                    let orderTotal = 0
+                    products.forEach(product => orderTotal += parseInt(product.product.price))
+                    setTotal(orderTotal.toFixed(2))
                 })
-            }
+            } 
         })
     }
 
@@ -51,7 +55,7 @@ const OrdersList = (routerProps) => {
     } else {
         return (
             <>
-                <button type="button" onClick={() => props.history.push("/buy")}>Browse Products</button>
+                <button type="button" onClick={() => props.history.push("/buy")}>Browse More Products</button>
                 <button type="button" onClick={() => props.history.push("/cart")}>Back to My Cart</button>
                 <button type="button" onClick={() => props.history.push("/pastorders")}>View Past Orders</button>
                 <h1>Current Open Order:</h1>
@@ -65,6 +69,7 @@ const OrdersList = (routerProps) => {
                         />
                     )}
                 </div>
+                <h1>Order Total: ${total}</h1>
                 <button type="button">Complete Order</button>
                 <button type="button">Cancel Order</button>
             </>
