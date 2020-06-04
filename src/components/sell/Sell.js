@@ -4,9 +4,10 @@ import {Input, Checkbox} from 'antd'
 
 const Sell = ({routerProps}) => {
 
-const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "none", image_path: "", product_type: ""})
+const [productInfo, setProductInfo] = useState({title: "", price: "", description: "", quantity: "", location: "none", product_type: ""})
 const [productTypes, setProductTypes] = useState([])
 const [localPickup, setIsLocalPickup] = useState(false)
+const [image, setImage] = useState({ imageFile: "", imagePath: "Choose File" });
 
 
   const handleFieldChange = (evt) => {
@@ -15,23 +16,34 @@ const [localPickup, setIsLocalPickup] = useState(false)
     setProductInfo(stateToChange)
   }
 
+  const handleFileUpload = e => { 
+      if(e.target.files[0]) {
+        setImage({ imageFile: e.target.files[0], imagePath: e.target.files[0].name })  
+      } else {
+          console.log("no image")
+      }
+          
+  };
 
   const handleSubmit = (e) => {
       e.preventDefault()
-      const product = {
-          "title": productInfo.title, 
-          "price": parseInt(productInfo.price), 
-          "description": productInfo.description, 
-          "quantity": parseInt(productInfo.quantity), 
-          "location": productInfo.location, 
-          "image_path": productInfo.image_path,
-          "product_type": parseInt(productInfo.product_type)
-      }
+    //   This is how our content type is known
+      const formData = new FormData();
+      formData.append("image_path", image.imageFile, image.imagePath);
+      formData.append('title', productInfo.title);
+      formData.append('price', parseInt(productInfo.price));
+      formData.append('description', productInfo.description);
+      formData.append('quantity', parseInt(productInfo.quantity));
+      formData.append('location', productInfo.location);
+      formData.append('product_type', parseInt(productInfo.product_type));
     
-      
-    productManager.postSellableProduct(product).then(routerProps.history.push("/"))
+    productManager.postSellableProduct(formData).then((productReturn) => {
+        routerProps.history.push(`/buy/${productReturn.id}`)
+    })
     
   }
+
+
 
   const getProductTypes = () => {
       productManager.getProductTypes().then(productTypes => {
@@ -55,7 +67,7 @@ const localPickupConditional = () => { document.getElementById("locationField").
   return (
    <div id='greyBackground'>
        <section id='creationForm'>
-   <form onSubmit={handleSubmit}>
+   <form onSubmit={handleSubmit} >
             <h1>Sell A Product</h1>
             <fieldset>
                 <Input onChange={handleFieldChange} type="text" id="title" placeholder="Title" value={productInfo.title} maxLength="50" required />
@@ -76,7 +88,7 @@ const localPickupConditional = () => { document.getElementById("locationField").
                  <Input onChange={handleFieldChange} type="text" id="location" placeholder="Location"  />
              </fieldset>
             <fieldset>
-                <Input onChange={handleFieldChange} type="text" id="image_path" placeholder="Image Path" value={productInfo.image_path}required />
+                <Input onChange={handleFileUpload} type="file" id="image_path"  required />
             </fieldset>
             <fieldset>
                 <label>Product Types:</label>
