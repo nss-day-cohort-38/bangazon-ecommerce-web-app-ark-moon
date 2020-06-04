@@ -40,12 +40,10 @@ const OrdersList = (routerProps) => {
     }
     
     const cancelOrder = () => { 
-     
-    shoppingCart.forEach(item => {
-        orderProductManager.deleteOrderProduct(item.id)
+        orderManager.deleteOrder(openOrder[0].id)
         .then(window.alert("You have successfully cancelled your order!"))
         .then(props.history.push("/buy"))
-    })  
+     
     }
 
     useEffect(() => {
