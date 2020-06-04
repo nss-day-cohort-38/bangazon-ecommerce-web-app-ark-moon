@@ -20,8 +20,13 @@ const PaymentForm = (routerProps) => {
         e.preventDefault();
 
         const updatedOrder = {
-            
+            "id": openOrder[0].id,
+            "customer_id": openOrder[0].customer_id,
+            "payment_type_id": openOrder[0].payment_type_id,
+            "created_at": openOrder[0].created_at
         }
+
+        
     }
 
     const getOpenOrder = () => {
