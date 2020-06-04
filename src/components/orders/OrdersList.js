@@ -74,7 +74,7 @@ const OrdersList = (routerProps) => {
                     )}
                 </div>
                 <h1>Order Total: ${total}</h1>
-                <button type="button">Complete Order</button>
+                <button type="button" onClick={() => props.history.push("/orderpayment")}>Complete Order</button>
                 <button type="button">Cancel Order</button>
             </>
         )
