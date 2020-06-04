@@ -16,15 +16,13 @@ const [image, setImage] = useState({ imageFile: "", imagePath: "Choose File" });
     setProductInfo(stateToChange)
   }
 
-  const handleFileUpload = e => {
-      if(!e.target.files[0].name) {
-          console.log("Image is undefined")
+  const handleFileUpload = e => { 
+      if(e.target.files[0]) {
+        setImage({ imageFile: e.target.files[0], imagePath: e.target.files[0].name })  
+      } else {
+          console.log("no image")
       }
-      else {
-        setImage({ imageFile: e.target.files[0], imagePath: e.target.files[0].name })
-        console.log(image)
-      }
-      
+          
   };
 
   const handleSubmit = (e) => {
