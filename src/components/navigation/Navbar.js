@@ -32,7 +32,7 @@ const Navbar = ({locationBoolean, setLocationBoolean, changeSearchTerm, routerPr
           <Menu.Item key="cart" icon={<ShoppingCartOutlined />} href='/mycart'>
             My Cart
           </Menu.Item>
-          <Menu.Item key="orders" icon={<AppstoreAddOutlined />} href='orders'>
+          <Menu.Item key="currentorder" icon={<AppstoreAddOutlined />} href='orders'>
             My Orders
           </Menu.Item>
           <Menu.Item key='myprofile' icon={<SettingOutlined />} href='/myprofile'>
