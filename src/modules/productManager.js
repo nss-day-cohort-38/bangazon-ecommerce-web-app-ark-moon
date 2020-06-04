@@ -44,15 +44,15 @@ const productAPI = {
     });
     return await resp.json();
   },
+  // Taking in a form data object
   postSellableProduct(product) {
     return fetch(`${baseUrl}/sell`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+      headers: { 
         Accept: "application/json",
         Authorization: `Token ${sessionStorage.getItem("token")}`,
-      },
-      body: JSON.stringify(product),
+      }, 
+      body:product
     }).then((resp) => resp.json());
   },
 };
