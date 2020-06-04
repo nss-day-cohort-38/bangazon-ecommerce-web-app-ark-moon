@@ -17,7 +17,9 @@ const [image, setImage] = useState({ imageFile: "", imagePath: "Choose File" });
   }
 
   const handleFileUpload = e => {
-    setImage({ imageFile: e.target.files[0], imagePath: e.target.files[0].name });
+      if(e.target.files[0].name) {
+        setImage({ imageFile: e.target.files[0], imagePath: e.target.files[0].name });
+      }  
   };
 
   const handleSubmit = (e) => {
