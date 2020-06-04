@@ -29,7 +29,7 @@ const orderManager = {
                 "Authorization": `Token ${sessionStorage.getItem("token")}`
             }
         })
-        .then(resp => resp.json())
+        
     }
 };
 
