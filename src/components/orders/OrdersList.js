@@ -5,10 +5,15 @@ import orderManager from '../../modules/orderManager';
 import productManager from '../../modules/productManager';
 
 const OrdersList = (routerProps) => {
+    // this stores the products that are connected with the active order
     const [shoppingCart, setShoppingCart] = useState([]);
+    // this stores all of the user's products
     const [orders, setOrders] = useState([]);
+    // this stores the user's single active order
     const [openOrder, setOpenOrder] = useState({});
+    // this stores all of the products available on Bangazon
     const [products, setProducts] = useState([]);
+    // this stores the total of the open order
     const [total, setTotal] = useState([]);
 
     const props = routerProps.routerProps;
