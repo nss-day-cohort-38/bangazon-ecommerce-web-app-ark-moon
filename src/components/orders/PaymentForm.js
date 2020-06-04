@@ -6,11 +6,11 @@ const PaymentForm = (routerProps) => {
     const [openOrder, setOpenOrder] = useState({})
     const [paymentType, setPaymentType] = useState([])
 
-    const handleFieldChange = evt => {
-        const stateToChange = { ...order };
-        stateToChange[evt.target.id] = evt.target.value;
-        setOrder(stateToChange);
-    };
+    // const handleFieldChange = evt => {
+    //     const stateToChange = { ...order };
+    //     stateToChange[evt.target.id] = evt.target.value;
+    //     setOrder(stateToChange);
+    // };
 
     const getOpenOrder = () => {
         orderManager.getUserOrders().then(orders => {
@@ -33,8 +33,7 @@ const PaymentForm = (routerProps) => {
                 <select
                     className="form-control"
                     id="payment_type"
-                    required
-                    onChange={handleFieldChange}>
+                    required>
                     <option value="">Select Type</option>
                     {paymentType.map(payment => (
                         <option key={payment.id} value={payment.id}>
