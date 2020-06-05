@@ -30,7 +30,6 @@ const PaymentForm = (routerProps) => {
 
         orderManager.updateOrder(updatedOrder).then(order => {
             setOpenOrder(order)
-            console.log(order)
         }).then(() => {
             alert("Your order is now complete!")}).then(() => {
                 props.history.push("/currentorder")
