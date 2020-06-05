@@ -11,6 +11,7 @@ import ShoppingCartList from "./orders/ShoppingCartList";
 import PaymentTypeForm from "./userProfile/PaymentTypeForm";
 import OrdersList from "./orders/OrdersList";
 import PastOrdersList from "./orders/PastOrdersList";
+import PaymentForm from "./orders/PaymentForm";
 
 const BodyRouter = (props) => {
   return (
@@ -99,6 +100,13 @@ const BodyRouter = (props) => {
         path="/pastorders"
         render={(routerProps) => {
         return <PastOrdersList routerProps={routerProps} />;
+        }}
+      />
+      <Route
+        exact
+        path="/orderpayment"
+        render={(routerProps) => {
+        return <PaymentForm routerProps={routerProps} />;
         }}
       />
     </Switch>

@@ -46,14 +46,14 @@ const ShoppingCartList = (routerProps) => {
                 <h1>Shopping Cart:</h1>
                 <div>
                     <h3>You have no items in your cart</h3>
-                    <button type="button" onClick={() => props.history.push("/buy")}>Browse Products</button>
+                    <button className="clickable" type="button" onClick={() => props.history.push("/buy")}>Browse Products</button>
                 </div>
             </>
         )
     } else {
         return (
             <>
-                <button type="button" onClick={() => props.history.push("/buy")}>Browse More Products</button>
+                <button className="clickable" type="button" onClick={() => props.history.push("/buy")}>Browse More Products</button>
                 <h1>Shopping Cart:</h1>
                 <div class='cartItemsContainer'>
                     {shoppingCart.map(shoppingCart =>
@@ -64,7 +64,7 @@ const ShoppingCartList = (routerProps) => {
                         />
                     )}
                 </div>
-                <button type="button" onClick={() => props.history.push("/currentorder")}>Review Order</button>
+                <button className="clickable" type="button" onClick={() => props.history.push("/currentorder")}>Review Order</button>
             </>
         )
     }

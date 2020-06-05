@@ -5,10 +5,15 @@ import orderManager from '../../modules/orderManager';
 import productManager from '../../modules/productManager';
 
 const OrdersList = (routerProps) => {
+    // this stores the products that are connected with the active order
     const [shoppingCart, setShoppingCart] = useState([]);
+    // this stores all of the user's products
     const [orders, setOrders] = useState([]);
+    // this stores the user's single active order
     const [openOrder, setOpenOrder] = useState({});
+    // this stores all of the products available on Bangazon
     const [products, setProducts] = useState([]);
+    // this stores the total of the open order
     const [total, setTotal] = useState([]);
 
     const props = routerProps.routerProps;
@@ -38,12 +43,14 @@ const OrdersList = (routerProps) => {
             } 
         })
     }
-    
-    const cancelOrder = () => { 
+
+    const cancelOrder = () => {
         orderManager.deleteOrder(openOrder[0].id)
+        .then(() => orderManager.getUserOrders().then(orders => {
+            setOrders(orders)
+        }))
         .then(window.alert("You have successfully cancelled your order!"))
         .then(props.history.push("/buy"))
-     
     }
 
     useEffect(() => {
@@ -81,7 +88,7 @@ const OrdersList = (routerProps) => {
                     )}
                 </div>
                 <h1>Order Total: ${total}</h1>
-                <button type="button">Complete Order</button>
+                <button type="button" onClick={() => props.history.push("/orderpayment")}>Complete Order</button>
                 <button type="button" onClick={cancelOrder}>Cancel Order</button>
             </>
         )
