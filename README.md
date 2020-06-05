@@ -20,7 +20,7 @@ Clone down the following back end repository before installing: [Bangazon API](h
 ## Authors
 * [Landon Morgan](https://github.com/iandonMorgan) - Deleting products from cart & Sellable products 
 * [Alyssa Nycum](https://github.com/alyssanycum) - Order creation, Order completion &  General order product relationships
-* [Jackson Parsons](https://github.com/jcksnparsons) - User/Customer information & Payment Types
+* [Jackson Parsons](https://github.com/jcksnparsons) - User/Customer information, Back End ReadMe, & Payment Types
 * [Jeremy Mattingly](https://github.com/halcyonvagabond) - Styling, Purchasing marketplace, & Search functionality
-* [Sofia Candiani](https://github.com/sncandiani) - Image Upload, Sellable products, & Cancelling orders
+* [Sofia Candiani](https://github.com/sncandiani) - Image Upload, Sellable products, Front End ReadMe, & Cancelling orders
 * [Matt Crook](https://github.com/MattCrook) - Product Details
