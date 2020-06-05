@@ -43,8 +43,8 @@ const OrdersList = (routerProps) => {
             } 
         })
     }
-    
-    const cancelOrder = () => { 
+
+    const cancelOrder = () => {
         orderManager.deleteOrder(openOrder[0].id)
         .then(() => orderManager.getUserOrders().then(orders => {
             setOrders(orders)

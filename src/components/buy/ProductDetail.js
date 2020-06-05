@@ -76,7 +76,7 @@ const ProductDetail = (routerProps) => {
         <img className="detailsImage" src={productDetails.image_path} />
         <h1>{productDetails.title}</h1>
         {isLoggedIn ? (
-          <button className="buy_product" onClick={addToCart}>
+          <button className="buy_product clickable" onClick={addToCart}>
             Add To Cart
           </button>
         ) : null}
@@ -92,7 +92,7 @@ const ProductDetail = (routerProps) => {
           ) : null}
         </ul>
         <button
-          className="product_detail_back_btn"
+          className="product_detail_back_btn clickable"
           onClick={() => props.history.push("/buy")}
         >
           Back
