@@ -24,15 +24,29 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => 
     }
 
     const categoryMenuItems = () => {
+
         if (loading === true){
             return <Menu.Item><Spin size="small" style={{'marginLeft':'50px'}}/></Menu.Item>
         } else {
             return categories.map(category=>{
+                
                 if (categoryAmount && (categoryAmount[`${category.name}`] !== undefined)){
+                    const sMenuTitle = `${category.name} (${categoryAmount[category.name].length})`
+                    const sMenuPreview = () => {
+                        const menuArray = []
+                        for(let i=0; i<=(categoryAmount[category.name].length - 1) && i<=2; i++){
+                            menuArray.push(
+                                <Menu.Item key={category.name} >
+                                    - {categoryAmount[category.name][i]}
+                                </Menu.Item>
+                            )
+                        }
+                        return menuArray;
+                    }
                     return (
-                        <Menu.Item key={category.name} onClick={selectCategory}>
-                            - {category.name} ({categoryAmount[category.name]})
-                        </Menu.Item>
+                        <SubMenu key={category.name} title={sMenuTitle} onClick={selectCategory}>
+                            {sMenuPreview()}
+                        </SubMenu>
                     )
                 } else {
                 return (

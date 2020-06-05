@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import paymentTypeManager from "../../modules/paymentTypeManager";
 import PaymentTypeCard from "./PaymentTypeCard";
 
-const PaymentTypeList = () => {
+const PaymentTypeList = ({customer}) => {
   const [paymentTypes, setPaymentTypes] = useState(null);
 
   async function getPaymentTypes() {
@@ -21,7 +21,7 @@ const PaymentTypeList = () => {
     if (paymentTypes) {
       return paymentTypes.map((paymentType) => {
         return (
-          <PaymentTypeCard key={paymentType.id} paymentType={paymentType} deletePaymentType={deletePaymentType} />
+          <PaymentTypeCard key={paymentType.id} paymentType={paymentType} deletePaymentType={deletePaymentType} customer={customer}/>
         );
       });
     }
