@@ -53,7 +53,6 @@ const ProductDetail = (routerProps) => {
             window.alert(`${productDetails.title} was added to your cart`)
           })
       })
-      
     }
   }
 

@@ -22,6 +22,16 @@ const orderManager = {
         })
         .then(resp => resp.json())
     },
+    updateOrder(updatedOrder) {
+        return fetch(`${orderBaseUrl}/${updatedOrder.id}`, {
+            "method": "PUT",
+            "headers": {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${sessionStorage.getItem("token")}`
+            },
+            "body": JSON.stringify(updatedOrder)
+        })
+    },
     deleteOrder(orderId) {
         return fetch(`${orderBaseUrl}/${orderId}`, {
             "method": "DELETE",
