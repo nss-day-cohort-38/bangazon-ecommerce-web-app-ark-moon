@@ -19,21 +19,28 @@ const PaymentForm = (routerProps) => {
     };
 
     const addPaymentTypeToOrder = (e) => {
-        e.preventDefault();
+        if (openOrder.payment_type_id == null) {
+            alert("Please select a payment type.")
+        } else {
+            e.preventDefault();
 
-        const updatedOrder = {
-            "id": openOrder.id,
-            "customer_id": parseInt(openOrder.customer_id),
-            "payment_type_id": parseInt(openOrder.payment_type_id),
-            "created_at": openOrder.created_at
-        }
-
-        orderManager.updateOrder(updatedOrder).then(order => {
-            setOpenOrder(order)
-        }).then(() => {
-            alert("Your order is now complete!")}).then(() => {
-                props.history.push("/currentorder")
+            const updatedOrder = {
+                "id": openOrder.id,
+                "customer_id": parseInt(openOrder.customer_id),
+                "payment_type_id": parseInt(openOrder.payment_type_id),
+                "created_at": openOrder.created_at
+            }
+    
+            orderManager.updateOrder(updatedOrder).then(order => {
+                setOpenOrder(order)
             })
+                .then(() => {
+                    alert("Your order is now complete!")
+                })
+                .then(() => {
+                    props.history.push("/currentorder")
+                })
+        }
     }
 
     const getOpenOrder = () => {
