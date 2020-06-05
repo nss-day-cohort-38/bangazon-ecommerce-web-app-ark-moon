@@ -26,7 +26,7 @@ const ProductCard = ({ productObj, routerProps }) => {
 
   const addToCart = () => {
     // filter out just the single open order from all the users orders
-    const openOrder = orders.filter(order => order.payment_type_id === null)
+    const openOrder = orders.filter(order => order.payment_type === null)
   
     // if there is already an open order, add the product to that order
     if (openOrder.length === 1) {
