@@ -22,7 +22,7 @@ const ProductCard = ({ productObj, routerProps }) => {
 
   useEffect(() => {
     getOrders();
-  }, []);
+  }, [orders]);
 
   const addToCart = () => {
     // filter out just the single open order from all the users orders
