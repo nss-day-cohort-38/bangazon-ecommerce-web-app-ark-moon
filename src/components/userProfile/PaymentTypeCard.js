@@ -1,5 +1,5 @@
 import React from "react";
-
+import cardChip from "../../images/cardChip.png"
 const PaymentTypeCard = props => {
 
     const accountFormatter = accountNum => {
@@ -13,12 +13,17 @@ const PaymentTypeCard = props => {
         return `${splitDate[1]}/${splitDate[0]}`
     }
 
-    return (<>
-    <h2>{props.paymentType.merchant_name}</h2>
-    <h4>{accountFormatter(props.paymentType.account_number)}</h4>
-    <h4>Expires {expoDateFormatter(props.paymentType.expiration_date)}</h4>
-    <button type="button" onClick={() => props.deletePaymentType(props.paymentType.id)}>Delete</button>
-    </>)
+    return (
+            <div className='cardContainer'>
+                <h1 className='cardType'>{props.paymentType.merchant_name}</h1>
+                <h3 className='cardAccount'>* * * * * * * * * * {accountFormatter(props.paymentType.account_number)}</h3>
+                <h4 className='cardExp'>Exp.{expoDateFormatter(props.paymentType.expiration_date)}</h4>
+                <h3 className='cardHolder'>{props.customer.user.first_name} {props.customer.user.last_name}</h3>
+                <img className='cardChipImg' src={cardChip} />
+                <button className='deleteCard clickable' type="button" onClick={() => props.deletePaymentType(props.paymentType.id)}>Delete</button>
+            </div>
+            
+    )
 }
 
 export default PaymentTypeCard

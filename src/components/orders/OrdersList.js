@@ -60,7 +60,7 @@ const OrdersList = (routerProps) => {
 
     if (openOrder.length === 0) {
         return (
-            <>
+            <div className='shoppingCart'>
                 <button type="button" onClick={() => props.history.push("/buy")}>Browse Products</button>
                 <button type="button" onClick={() => props.history.push("/cart")}>Back to My Cart</button>
                 <button type="button" onClick={() => props.history.push("/pastorders")}>View Past Orders</button>
@@ -68,11 +68,11 @@ const OrdersList = (routerProps) => {
                 <div>
                     <h3>You have not started an order yet. Browse products and add them to your cart.</h3>
                 </div>
-            </>
+            </div>
         )
     } else {
         return (
-            <>
+            <div className='shoppingCart'>
                 <button type="button" onClick={() => props.history.push("/buy")}>Browse More Products</button>
                 <button type="button" onClick={() => props.history.push("/cart")}>Back to My Cart</button>
                 <button type="button" onClick={() => props.history.push("/pastorders")}>View Past Orders</button>
@@ -90,7 +90,7 @@ const OrdersList = (routerProps) => {
                 <h1>Order Total: ${total}</h1>
                 <button type="button" onClick={() => props.history.push("/orderpayment")}>Complete Order</button>
                 <button type="button" onClick={cancelOrder}>Cancel Order</button>
-            </>
+            </div>
         )
     }
 };

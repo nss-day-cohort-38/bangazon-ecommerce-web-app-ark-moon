@@ -5,9 +5,9 @@ const ProductNavbar = ({changeSearchTerm, locationBoolean, setLocationBoolean, r
     const { Search } = Input
 
     function handleSearch(value){
+        console.log(window.screen.width)
         if (window.location.pathname != '/buy'){
             changeSearchTerm(value)
-
             routerProps.history.push('/buy', changeSearchTerm(value))
         }else {
             console.log(window.location)

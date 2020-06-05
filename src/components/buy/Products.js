@@ -6,7 +6,7 @@ import ProductNavbar from './ProductNavbar'
 import { Input, Spin } from 'antd'
 import './Buy.css'
 
-const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
+const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean, routerProps}) => {
     const [selectedCategory, changeCategory] = useState('all')
     const [products, addAllProducts] = useState(null)
     const [categoryAmount, changeCategoryAmount] = useState()
@@ -18,9 +18,9 @@ const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
             const locationObjects = {}
             resp.forEach(product=>{
                 if (categoryObjects[`${product.product_type.name}`] === undefined){
-                    categoryObjects[`${product.product_type.name}`] = 1
+                    categoryObjects[`${product.product_type.name}`] = [product.title]
                 }else{
-                    categoryObjects[`${product.product_type.name}`] += 1
+                    categoryObjects[`${product.product_type.name}`].push(product.title)
                 };
 
             })
@@ -69,7 +69,7 @@ const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
             const filteredProducts = locationFilter()
             return ( 
                 filteredProducts.map((productObj, i)=>{
-                    return <ProductCard key={i} productObj={productObj}/>
+                    return <ProductCard key={i} productObj={productObj} routerProps={routerProps}/>
                 })
             );
         } else if(products === null) {

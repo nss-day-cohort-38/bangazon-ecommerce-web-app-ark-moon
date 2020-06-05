@@ -10,7 +10,13 @@ const deleteFromCart = (product) => {
 
 const ShoppingCartCard = (routerProps) => {
     return (
-        <div>
+        <div class='cartItem'>
+            <div className="cartItemImage">
+            <img
+          alt="product"
+          src={routerProps.shoppingCart.product.image_path}
+            />
+            </div>
             <h3>{routerProps.shoppingCart.product.title}</h3>
             <p>${routerProps.shoppingCart.product.price}</p>
             <p>Quantity: {routerProps.shoppingCart.product.quantity}</p>
