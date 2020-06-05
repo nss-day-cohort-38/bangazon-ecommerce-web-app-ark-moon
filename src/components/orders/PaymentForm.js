@@ -15,6 +15,7 @@ const PaymentForm = (routerProps) => {
     const [products, setProducts] = useState([]);
     // this stores the products that are connected with the active order
     const [shoppingCart, setShoppingCart] = useState([]);
+    const [product, setProduct] = useState({});
     
 
     const props = routerProps.routerProps;
@@ -53,6 +54,26 @@ const PaymentForm = (routerProps) => {
         } else {
             e.preventDefault();
 
+            shoppingCart.map(product => {
+                const updatedQuantity = product.product.quantity - 1
+                console.log(product)
+
+                const updatedProduct = {
+                    "id": parseInt(product.product_id),
+                    "title": product.product.title,
+                    "price": product.product.price,
+                    "description": product.product.description,
+                    "quantity": parseInt(updatedQuantity),
+                    "location": product.product.location,
+                    "image_path": product.product.image_path,
+                    "created_at": product.product.created_at,
+                    "customer_id": parseInt(product.product.customer_id),
+                    "product_type_id": parseInt(product.product.product_type_id)
+                }
+
+                productManager.updateProduct(updatedProduct)
+            })
+
             const updatedOrder = {
                 "id": openOrder.id,
                 "customer_id": parseInt(openOrder.customer_id),
@@ -69,8 +90,6 @@ const PaymentForm = (routerProps) => {
                 .then(() => {
                     props.history.push("/currentorder")
                 })
-            
-            shoppingCart.map(product => product.product.quantity - 1)
         }
     }
 
