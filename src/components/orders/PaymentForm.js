@@ -66,6 +66,7 @@ const PaymentForm = (routerProps) => {
     return (
         <>
             <h1>Select Payment Type:</h1>
+            <button type="button" onClick={() => props.history.push("newpayment")}>Add a new payment account</button>
             <fieldset>
                 <select
                     className="form-control"
