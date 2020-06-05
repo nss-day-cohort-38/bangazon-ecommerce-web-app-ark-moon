@@ -38,6 +38,13 @@ const OrdersList = (routerProps) => {
             } 
         })
     }
+    
+    const cancelOrder = () => { 
+        orderManager.deleteOrder(openOrder[0].id)
+        .then(window.alert("You have successfully cancelled your order!"))
+        .then(props.history.push("/buy"))
+     
+    }
 
     useEffect(() => {
         getShoppingCartProducts();
@@ -75,7 +82,7 @@ const OrdersList = (routerProps) => {
                 </div>
                 <h1>Order Total: ${total}</h1>
                 <button type="button">Complete Order</button>
-                <button type="button">Cancel Order</button>
+                <button type="button" onClick={cancelOrder}>Cancel Order</button>
             </>
         )
     }

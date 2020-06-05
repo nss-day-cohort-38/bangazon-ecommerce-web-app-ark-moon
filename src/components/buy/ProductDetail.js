@@ -44,12 +44,16 @@ const ProductDetail = (routerProps) => {
         "product_id": productDetails.id
       }
 
-      orderManager.createOrder().then(orderData => {
+      orderManager.createOrder()
+      .then(orderData => {
         newOrderProduct.order_id = orderData.id
-        orderProductManager.createOrderProduct(newOrderProduct).then(() => {
-          window.alert(`${productDetails.title} was added to your cart`)
-        })
+        orderProductManager.createOrderProduct(newOrderProduct)
+        .then(setOrders(orderData))
+        .then(() => {
+            window.alert(`${productDetails.title} was added to your cart`)
+          })
       })
+      
     }
   }
 
