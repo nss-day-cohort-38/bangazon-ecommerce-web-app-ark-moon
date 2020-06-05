@@ -25,8 +25,8 @@ const ProductCard = ({ productObj, routerProps }) => {
   }, []);
 
   const addToCart = () => {
-    // filter out just the single open order from all the user's orders
-    const openOrder = orders.filter(order => order.payment_type === null)
+    // filter out just the single open order from all the users orders
+    const openOrder = orders.filter(order => order.payment_type_id === null)
   
     // if there is already an open order, add the product to that order
     if (openOrder.length === 1) {
@@ -47,7 +47,7 @@ const ProductCard = ({ productObj, routerProps }) => {
       orderManager.createOrder().then(orderData => {
         newOrderProduct.order_id = orderData.id
         orderProductManager.createOrderProduct(newOrderProduct)
-        .then(setOrders(orderData))
+        .then(setOrders([orderData]))
         .then(() => {
           window.alert(`${productObj.title} was added to your cart`)
         })
