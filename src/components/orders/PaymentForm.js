@@ -6,12 +6,14 @@ const PaymentForm = (routerProps) => {
     // used to store all the user's orders
     const [orders, setOrders] = useState([]);
     // used to store the user's single active order
-    const [openOrder, setOpenOrder] = useState({});
+    const [openOrder, setOpenOrder] = useState([]);
     //used to store all the user's payment types
     const [paymentTypes, setPaymentTypes] = useState([]);
 
+    const props = routerProps.routerProps;
+
     const handleFieldChange = evt => {
-        const stateToChange = { ...openOrder };
+        const stateToChange = { ...openOrder[0] };
         stateToChange[evt.target.id] = evt.target.value;
         setOpenOrder(stateToChange);
     };
@@ -20,13 +22,19 @@ const PaymentForm = (routerProps) => {
         e.preventDefault();
 
         const updatedOrder = {
-            "id": openOrder[0].id,
-            "customer_id": openOrder[0].customer_id,
-            "payment_type_id": openOrder[0].payment_type_id,
-            "created_at": openOrder[0].created_at
+            "id": openOrder.id,
+            "customer_id": parseInt(openOrder.customer_id),
+            "payment_type_id": parseInt(openOrder.payment_type_id),
+            "created_at": openOrder.created_at
         }
 
-        
+        orderManager.updateOrder(updatedOrder).then(order => {
+            setOpenOrder(order)
+            console.log(order)
+        }).then(() => {
+            alert("Your order is now complete!")}).then(() => {
+                props.history.push("/currentorder")
+            })
     }
 
     const getOpenOrder = () => {
@@ -35,7 +43,6 @@ const PaymentForm = (routerProps) => {
             // filter out just the single open order
             const openOrder = orders.filter(order => order.payment_type === null)
             setOpenOrder(openOrder)
-            console.log(openOrder)
         })
     };
 
@@ -56,7 +63,7 @@ const PaymentForm = (routerProps) => {
             <fieldset>
                 <select
                     className="form-control"
-                    id="payment_type"
+                    id="payment_type_id"
                     required
                     onChange={handleFieldChange}>
                     <option value="">Select Type</option>
@@ -67,7 +74,7 @@ const PaymentForm = (routerProps) => {
                     ))}
                 </select>
             </fieldset>
-            <button type="button">Complete Order</button>
+            <button type="button" onClick={addPaymentTypeToOrder}>Complete Order</button>
         </>
     )
 };
