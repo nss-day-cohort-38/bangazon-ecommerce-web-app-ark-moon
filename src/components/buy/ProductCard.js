@@ -46,7 +46,9 @@ const ProductCard = ({ productObj, routerProps }) => {
   
       orderManager.createOrder().then(orderData => {
         newOrderProduct.order_id = orderData.id
-        orderProductManager.createOrderProduct(newOrderProduct).then(() => {
+        orderProductManager.createOrderProduct(newOrderProduct)
+        .then(setOrders(orderData))
+        .then(() => {
           window.alert(`${productObj.title} was added to your cart`)
         })
       })
