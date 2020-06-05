@@ -57,6 +57,18 @@ const PaymentForm = (routerProps) => {
             shoppingCart.map(product => {
                 const updatedQuantity = product.product.quantity - 1
                 console.log(product)
+                // console.log(parseInt(product.product_id))
+                // console.log(product.product.title)
+                // console.log(product.product.price)
+                // console.log(product.product.description)
+                // console.log(parseInt(updatedQuantity))
+                // console.log(product.product.location)
+                // console.log(product.product.image_path)
+                // console.log(product.product.created_at)
+                // console.log(parseInt(product.product.customer_id))
+                // console.log(parseInt(product.product.product_type_id))
+
+
 
                 const updatedProduct = {
                     "id": parseInt(product.product_id),
