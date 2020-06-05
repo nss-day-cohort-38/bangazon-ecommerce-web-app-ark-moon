@@ -1,0 +1,12 @@
+.cartItemsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cartItem{
+    width: 30%;
+    margin-top: 2%;
+    padding: 15px;
+    border: 1px solid black;
+}

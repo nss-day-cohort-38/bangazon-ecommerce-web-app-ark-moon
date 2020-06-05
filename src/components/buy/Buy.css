@@ -35,27 +35,6 @@
     margin-top: 10px !important;
 }
 
-.productNavbar{
-    color: white;
-    position: fixed;
-    left: 260px;
-    top:2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 10px 0px;
-    width: 50%;
-}
-.productNavbar p{
-    margin-top: -17px;
-
-}
-.productNavbar > *{
-    margin-right: 10px;
-}
-.searchProductName{
-    width: 60% !important;
-}
 
 .searchTerm{
     position: fixed;

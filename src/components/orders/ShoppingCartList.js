@@ -55,7 +55,7 @@ const ShoppingCartList = (routerProps) => {
             <>
                 <button type="button" onClick={() => props.history.push("/buy")}>Browse More Products</button>
                 <h1>Shopping Cart:</h1>
-                <div>
+                <div class='cartItemsContainer'>
                     {shoppingCart.map(shoppingCart =>
                         <ShoppingCartCard
                             key={shoppingCart.id}

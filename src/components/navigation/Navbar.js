@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Layout, Menu, Dropdown } from 'antd';
-import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined, SmileOutlined } from '@ant-design/icons';
+import { GiftFilled, DollarOutlined, SettingOutlined, ShoppingCartOutlined, AppstoreAddOutlined, SmileOutlined, SearchOutlined } from '@ant-design/icons';
 import logo from "../../images/BangazonLogo.png"
 import profileIcon from "../../images/profileIcon.png"
+import searchIcon from "../../images/searchIcon.png"
 import ProductNavbar from '../buy/ProductNavbar'
 const { Header } = Layout;
 
@@ -56,6 +57,25 @@ const Navbar = ({locationBoolean, setLocationBoolean, changeSearchTerm, routerPr
     };
   };
 
+  // function productSearchConditional(){
+  //   const searchProduct = (
+  //     <Menu>
+  //       <Menu.Item>
+  //     <ProductNavbar changeSearchTerm={changeSearchTerm} setLocationBoolean={setLocationBoolean} locationBoolean={locationBoolean} routerProps={routerProps}/>
+  //     </Menu.Item>
+  //     </Menu>
+  //   );
+  //   console.log(window.innerWidth)
+  //   if(window.innerWidth < 1050){
+  //     return (
+  //       <Dropdown overlay={searchProduct} placement="bottomCenter" trigger={['click']}>
+  //         <img className="profileIcon" src={searchIcon}/>
+  //       </Dropdown>
+  //     )
+  //   } else {
+  //     return searchProduct
+  //   }
+  // }
   
   useState(()=>{
     setTimeout(function(){
