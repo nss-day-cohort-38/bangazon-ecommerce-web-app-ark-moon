@@ -70,7 +70,7 @@ const PaymentForm = (routerProps) => {
                     props.history.push("/currentorder")
                 })
             
-            
+            shoppingCart.map(product => product.product.quantity - 1)
         }
     }
 
