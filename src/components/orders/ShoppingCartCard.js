@@ -19,7 +19,7 @@ const ShoppingCartCard = (routerProps) => {
             </div>
             <h3>{routerProps.shoppingCart.product.title}</h3>
             <p>${routerProps.shoppingCart.product.price}</p>
-            <p>Quantity: {routerProps.shoppingCart.product.quantity}</p>
+            <p>Quantity: 1</p>
             <button className="clickable" type="button" onClick={() => {
                 let product = routerProps.shoppingCart.product
                 product.id = routerProps.shoppingCart.id

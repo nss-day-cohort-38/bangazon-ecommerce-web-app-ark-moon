@@ -15,8 +15,7 @@ const PaymentForm = (routerProps) => {
     const [products, setProducts] = useState([]);
     // this stores the products that are connected with the active order
     const [shoppingCart, setShoppingCart] = useState([]);
-    const [product, setProduct] = useState({});
-    
+
 
     const props = routerProps.routerProps;
 
@@ -55,35 +54,9 @@ const PaymentForm = (routerProps) => {
             e.preventDefault();
 
             shoppingCart.map(product => {
-                const updatedQuantity = product.product.quantity - 1
-                console.log(product)
-                // console.log(parseInt(product.product_id))
-                // console.log(product.product.title)
-                // console.log(product.product.price)
-                // console.log(product.product.description)
-                // console.log(parseInt(updatedQuantity))
-                // console.log(product.product.location)
-                // console.log(product.product.image_path)
-                // console.log(product.product.created_at)
-                // console.log(parseInt(product.product.customer_id))
-                // console.log(parseInt(product.product.product_type_id))
+                const orderedProduct = products.filter(mainProduct => product.product_id === mainProduct.id)
 
-
-
-                const updatedProduct = {
-                    "id": parseInt(product.product_id),
-                    "title": product.product.title,
-                    "price": product.product.price,
-                    "description": product.product.description,
-                    "quantity": parseInt(updatedQuantity),
-                    "location": product.product.location,
-                    "image_path": product.product.image_path,
-                    "created_at": product.product.created_at,
-                    "customer_id": parseInt(product.product.customer_id),
-                    "product_type_id": parseInt(product.product.product_type_id)
-                }
-
-                productManager.updateProduct(updatedProduct)
+                productManager.patchProduct(orderedProduct[0])
             })
 
             const updatedOrder = {
