@@ -10,7 +10,6 @@ import Sell from "./sell/Sell";
 import ShoppingCartList from "./orders/ShoppingCartList";
 import PaymentTypeForm from "./userProfile/PaymentTypeForm";
 import OrdersList from "./orders/OrdersList";
-import PastOrdersList from "./orders/PastOrdersList";
 import PaymentForm from "./orders/PaymentForm";
 
 const BodyRouter = (props) => {
@@ -53,7 +52,14 @@ const BodyRouter = (props) => {
         exact
         path="/buy"
         render={(routerProps) => {
-          return <ProductsMain routerProps={routerProps} locationBoolean={props.locationBoolean} searchTerm={props.searchTerm} changeSearchTerm={props.changeSearchTerm}/>;
+          return (
+            <ProductsMain
+              routerProps={routerProps}
+              locationBoolean={props.locationBoolean}
+              searchTerm={props.searchTerm}
+              changeSearchTerm={props.changeSearchTerm}
+            />
+          );
         }}
       />
       <Route
@@ -85,28 +91,22 @@ const BodyRouter = (props) => {
         exact
         path="/cart"
         render={(routerProps) => {
-        return <ShoppingCartList routerProps={routerProps} />;
+          return <ShoppingCartList routerProps={routerProps} />;
         }}
       />
       <Route
         exact
         path="/currentorder"
         render={(routerProps) => {
-        return <OrdersList routerProps={routerProps} />;
+          return <OrdersList routerProps={routerProps} />;
         }}
       />
-      <Route
-        exact
-        path="/pastorders"
-        render={(routerProps) => {
-        return <PastOrdersList routerProps={routerProps} />;
-        }}
-      />
+
       <Route
         exact
         path="/orderpayment"
         render={(routerProps) => {
-        return <PaymentForm routerProps={routerProps} />;
+          return <PaymentForm routerProps={routerProps} />;
         }}
       />
     </Switch>

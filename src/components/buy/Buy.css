@@ -8,6 +8,7 @@
 
 }
 .productContainer{
+    justify-content: center;
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -23,6 +24,7 @@
     margin: 1vw !important;
     width: 250px;
     height: 315px;
+    box-shadow: 2px 2px 2px lightgray;
 }
 .productCard img{
     height: 150px;
