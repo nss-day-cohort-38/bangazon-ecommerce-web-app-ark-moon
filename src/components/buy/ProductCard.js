@@ -52,6 +52,29 @@ const ProductCard = ({ productObj, routerProps, orders, setOrders }) => {
     window.location = "/login";
   }
 
+  const checkQuantityIsPositive = (product) => {
+    if (product.quantity > 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const checkQuantity = (int) => {
+    if (int > 0) {
+      return <Tooltip placement="right" title="Add to Cart">
+      {isLoggedIn ? (
+        <ShoppingCartOutlined className="clickable" key="addToCart" onClick={addToCart}/>
+      ) : (
+        <ShoppingCartOutlined
+          className="clickable"
+          key="login"
+          onClick={goToLogin}
+        />
+      )}
+    </Tooltip> } else {return <p><em>Sold out</em></p>}
+  }
+
   return (
     <Card
       className="productCard"
@@ -74,18 +97,7 @@ const ProductCard = ({ productObj, routerProps, orders, setOrders }) => {
         <Tooltip placement="bottom" title="Contact Seller">
           <MailOutlined className="clickable" key="contact" />
         </Tooltip>,
-
-        <Tooltip placement="right" title="Add to Cart">
-          {isLoggedIn ? (
-            <ShoppingCartOutlined className="clickable" key="addToCart" onClick={addToCart}/>
-          ) : (
-            <ShoppingCartOutlined
-              className="clickable"
-              key="login"
-              onClick={goToLogin}
-            />
-          )}
-        </Tooltip>,
+        checkQuantity(productObj.quantity)
       ]}
     >
       <Meta

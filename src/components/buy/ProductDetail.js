@@ -15,10 +15,10 @@ const ProductDetail = (routerProps) => {
   const isLoggedIn = sessionStorage.getItem("token");
 
   const getOrders = () => {
-    orderManager.getUserOrders().then(orders => {
-      setOrders(orders)
-    })
-  }
+    orderManager.getUserOrders().then((orders) => {
+      setOrders(orders);
+    });
+  };
 
   useEffect(() => {
     getOrders();
@@ -26,35 +26,35 @@ const ProductDetail = (routerProps) => {
 
   const addToCart = () => {
     // filter out just the single open order from all the user's orders
-    const openOrder = orders.filter(order => order.payment_type === null)
+    const openOrder = orders.filter((order) => order.payment_type === null);
 
     // if there is already an open order, add the product to that order
     if (openOrder.length === 1) {
       const newOrderProduct = {
-        "order_id": openOrder[0].id,
-        "product_id": productDetails.id
-      }
+        order_id: openOrder[0].id,
+        product_id: productDetails.id,
+      };
 
       orderProductManager.createOrderProduct(newOrderProduct).then(() => {
-        window.alert(`${productDetails.title} was added to your cart`)
-      })
+        window.alert(`${productDetails.title} was added to your cart`);
+      });
     } else {
       //if there is not already an open order, open a new order and then add the product to that new order
       const newOrderProduct = {
-        "product_id": productDetails.id
-      }
+        product_id: productDetails.id,
+      };
 
-      orderManager.createOrder()
-      .then(orderData => {
-        newOrderProduct.order_id = orderData.id
-        orderProductManager.createOrderProduct(newOrderProduct)
-        .then(setOrders([orderData]))
-        .then(() => {
-            window.alert(`${productDetails.title} was added to your cart`)
-          })
-      })
+      orderManager.createOrder().then((orderData) => {
+        newOrderProduct.order_id = orderData.id;
+        orderProductManager
+          .createOrderProduct(newOrderProduct)
+          .then(setOrders([orderData]))
+          .then(() => {
+            window.alert(`${productDetails.title} was added to your cart`);
+          });
+      });
     }
-  }
+  };
 
   useEffect(() => {
     const getProductDetail = async () => {
@@ -70,20 +70,31 @@ const ProductDetail = (routerProps) => {
     return dateString.split("T")[0];
   };
 
+  const checkQuantity = (int) => {
+    if (int > 0) {
+      return (
+        <button className="buy_product clickable" onClick={addToCart}>
+          Add To Cart
+        </button>
+      );
+    } else {
+      return <h2>Sold Out!</h2>;
+    }
+  };
+
   return (
     <>
       <div className="detailsItem">
         <img className="detailsImage" src={productDetails.image_path} />
         <h1>{productDetails.title}</h1>
-        {isLoggedIn ? (
-          <button className="buy_product clickable" onClick={addToCart}>
-            Add To Cart
-          </button>
-        ) : null}
+        {isLoggedIn ? checkQuantity(productDetails.quantity) : null}
         <ul>
           <li>Price: ${productDetails.price}</li>
           <li>Description: {productDetails.description}</li>
-          <li>Quantity Left In Stock: {productDetails.quantity}</li>
+          {productDetails.quantity > 0 ? (
+            <li>Quantity Left In Stock: {productDetails.quantity}</li>
+          ) : null}
+
           {productDetails.location !== "none" ? (
             <li>Location: {productDetails.location}</li>
           ) : null}
