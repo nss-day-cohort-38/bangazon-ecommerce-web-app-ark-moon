@@ -77,7 +77,7 @@ const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean, routerProps
             const filteredProducts = locationFilter()
             return ( 
                 filteredProducts.map((productObj, i)=>{
-                    return <ProductCard key={i} productObj={productObj} orders={orders} setOrders={setOrders} />
+                    return <ProductCard key={i} productObj={productObj} orders={orders} setOrders={setOrders} routerProps={routerProps} />
                 })
             );
         } else if(products === null) {
