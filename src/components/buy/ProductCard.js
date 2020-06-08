@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Card, Tooltip } from "antd";
 import {
   UnorderedListOutlined,
@@ -11,18 +10,8 @@ import orderProductManager from "../../modules/orderProductManager";
 
 const { Meta } = Card;
 
-const ProductCard = ({ productObj, routerProps }) => {
-  const [orders, setOrders] = useState([]);
+const ProductCard = ({ productObj, routerProps, orders, setOrders }) => {
   const isLoggedIn = sessionStorage.getItem("token");
-  const getOrders = () => {
-    orderManager.getUserOrders().then(orders => {
-      setOrders(orders)
-    })
-  }
-
-  useEffect(() => {
-    getOrders();
-  }, []);
 
   const addToCart = () => {
     // filter out just the single open order from all the users orders
