@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CustomerManager from "../../modules/customerManager";
 import PaymentTypeList from "./PaymentTypeList"
+import './Profile.css'
 
 const UserProfile = ({routerProps}) => {
   const [customer, setCustomer] = useState(null);
@@ -18,6 +19,7 @@ const UserProfile = ({routerProps}) => {
 
   if (customer) {
     return (
+      <div className='profileContainer'>
       <div class="detailsItem">
         <img className='detailsImage' src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_24787.png&f=1&nofb=1' alt='profile'/>
         <h1>
@@ -28,8 +30,12 @@ const UserProfile = ({routerProps}) => {
         </h3>
         <h3>{customer.phone_number}</h3>
         <h3>{customer.address}</h3>
-        <PaymentTypeList />
+      </div>
+      <div className='paymentMethodContainer'>
+        <h1>Payment Methods</h1>
         <button onClick={() => routerProps.history.push("/newpayment")}>Add New Payment Type</button>
+        <PaymentTypeList customer={customer}/>
+      </div>
       </div>
     );
   } else {
