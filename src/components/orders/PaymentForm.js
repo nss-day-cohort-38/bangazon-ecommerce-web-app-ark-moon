@@ -37,7 +37,7 @@ const PaymentForm = (routerProps) => {
                 orderProductManager.getOrderProductsByOrder(openOrder[0].id).then(products => {
                     setShoppingCart(products)
                 })
-            } 
+            }
         })
     }
 
@@ -53,11 +53,24 @@ const PaymentForm = (routerProps) => {
         } else {
             e.preventDefault();
 
-            shoppingCart.map(product => {
-                const orderedProduct = products.filter(mainProduct => product.product_id === mainProduct.id)
-
-                productManager.patchProduct(orderedProduct[0])
+            let uniqueItems = {}
+            shoppingCart.map(product1 => {
+                if (uniqueItems[product1.product_id]) {
+                    uniqueItems[product1.product_id] += 1
+                } else {
+                    uniqueItems[product1.product_id] = 1
+                }
             })
+            let promiseArray = []
+            for (const productId in uniqueItems) {
+                let newQuantity = 0
+                productManager.getProduct(productId).then(resp => {
+                    newQuantity = resp.quantity - uniqueItems[productId]
+                    promiseArray.push(productManager.patchProduct(parseInt(productId), newQuantity))
+                })
+            }
+            Promise.all(promiseArray)
+
 
             const updatedOrder = {
                 "id": openOrder.id,
@@ -65,7 +78,7 @@ const PaymentForm = (routerProps) => {
                 "payment_type_id": parseInt(openOrder.payment_type_id),
                 "created_at": openOrder.created_at
             }
-    
+
             orderManager.updateOrder(updatedOrder).then(order => {
                 setOpenOrder(order)
             })

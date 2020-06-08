@@ -73,17 +73,16 @@ const productAPI = {
         "Content-Type": "application/json"
       }
     })
-    // .then(resp => resp.json())
+    .then(resp => resp.json())
   },
-  patchProduct(patchProduct) {
-    console.log(patchProduct)
-    return fetch(`${baseUrl}/products/${patchProduct.id}`, {
+  patchProduct(patchProductId, quant) {
+    return fetch(`${baseUrl}/products/${patchProductId}`, {
       "method": "PATCH",
       "headers": {
         "Content-Type": "application/json",
         "Authorization": `Token ${sessionStorage.getItem("token")}`
       },
-      "body": JSON.stringify({quantity: patchProduct.quantity - 1})
+      "body": JSON.stringify({quantity: quant})
     })
     // .then(resp => resp.json())
   }
