@@ -27,7 +27,6 @@ const Navbar = ({locationBoolean, setLocationBoolean, changeSearchTerm, routerPr
     }
 
     if (sessionStorage.getItem('token') !== null) {
-      console.log(routerProps)
       return (
         <Menu selectedKeys={[current]} onClick={handleClick}>
           <Menu.Item key="cart" icon={<ShoppingCartOutlined />} href='/mycart'>

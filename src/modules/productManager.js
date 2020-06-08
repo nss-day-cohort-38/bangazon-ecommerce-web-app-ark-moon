@@ -55,6 +55,37 @@ const productAPI = {
       body:product
     }).then((resp) => resp.json());
   },
+  updateProduct(updatedProduct) {
+    return fetch(`${baseUrl}/products/${updatedProduct.id}`, {
+      "method": "PUT",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${sessionStorage.getItem("token")}`
+      },
+      "body": JSON.stringify(updatedProduct)
+    })
+  },
+  getProduct(productId) {
+    return fetch(`${baseUrl}/products/${productId}`, {
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(resp => resp.json())
+  },
+  patchProduct(patchProductId, quant) {
+    return fetch(`${baseUrl}/products/${patchProductId}`, {
+      "method": "PATCH",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${sessionStorage.getItem("token")}`
+      },
+      "body": JSON.stringify({quantity: quant})
+    })
+    // .then(resp => resp.json())
+  }
 };
 
 export default productAPI;
