@@ -4,12 +4,20 @@ import CategorySidebar from './CategorySidebar'
 import ProductCard from './ProductCard'
 import ProductNavbar from './ProductNavbar'
 import { Input, Spin } from 'antd'
+import orderManager from "../../modules/orderManager";
 import './Buy.css'
 
 const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
     const [selectedCategory, changeCategory] = useState('all')
     const [products, addAllProducts] = useState(null)
     const [categoryAmount, changeCategoryAmount] = useState()
+    const [orders, setOrders] = useState([]);
+
+    const getOrders = () => {
+        orderManager.getUserOrders().then(ord => {
+          setOrders(ord)
+        })
+      }
 
     function getProducts(){
         productAPI.getProducts().then(resp=>{
@@ -69,7 +77,7 @@ const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
             const filteredProducts = locationFilter()
             return ( 
                 filteredProducts.map((productObj, i)=>{
-                    return <ProductCard key={i} productObj={productObj}/>
+                    return <ProductCard key={i} productObj={productObj} orders={orders} setOrders={setOrders} />
                 })
             );
         } else if(products === null) {
@@ -87,7 +95,8 @@ const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
     }
 
     useEffect(()=>{
-        getProducts()
+        getProducts();
+        getOrders();
     },[])
 
     useEffect(()=>{
@@ -99,7 +108,7 @@ const ProductMain = ({searchTerm, changeSearchTerm, locationBoolean}) => {
 
     return (
         <>
-        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount} />
+        <CategorySidebar changeCategory={changeCategory} selectedCategory={selectedCategory} categoryAmount={categoryAmount}/>
         <div>
             <div className='productContainer'>
             {searchedTermConditional()}
