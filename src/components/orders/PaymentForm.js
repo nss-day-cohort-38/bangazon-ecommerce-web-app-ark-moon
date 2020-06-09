@@ -114,7 +114,7 @@ const PaymentForm = (routerProps) => {
     }, []);
 
     return (
-        <>
+        <div className='shoppingCart'>
             <h1>Select Payment Type:</h1>
             <button type="button" onClick={() => props.history.push("newpayment")}>Add a new payment account</button>
             <fieldset>
@@ -132,7 +132,7 @@ const PaymentForm = (routerProps) => {
                 </select>
             </fieldset>
             <button type="button" onClick={addPaymentTypeToOrder}>Complete Order</button>
-        </>
+        </div>
     )
 };
 

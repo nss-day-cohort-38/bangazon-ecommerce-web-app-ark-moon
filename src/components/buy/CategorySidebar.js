@@ -33,11 +33,11 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => 
                 if (categoryAmount && (categoryAmount[`${category.name}`] !== undefined)){
                     const sMenuTitle = `${category.name} (${categoryAmount[category.name].length})`
                     const sMenuPreview = () => {
-                        const menuArray = []
+                        const menuArray = [<Menu.Item key={category.name} >Top {categoryAmount[category.name].length > 1 ? 'results' : 'result'}: </Menu.Item>]
                         for(let i=0; i<=(categoryAmount[category.name].length - 1) && i<=2; i++){
                             menuArray.push(
                                 <Menu.Item key={category.name} >
-                                    - {categoryAmount[category.name][i]}
+                                    {i+1}. {categoryAmount[category.name][i]}
                                 </Menu.Item>
                             )
                         }
@@ -45,6 +45,7 @@ const CategorySidebar = ({selectedCategory, changeCategory, categoryAmount}) => 
                     }
                     return (
                         <SubMenu key={category.name} title={sMenuTitle} onClick={selectCategory}>
+                            
                             {sMenuPreview()}
                         </SubMenu>
                     )
