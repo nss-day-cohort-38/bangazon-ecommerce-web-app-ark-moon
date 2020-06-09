@@ -5,7 +5,9 @@
     justify-content: center;
     align-items: center;
 }
-
+.detailsItem img{
+    max-width: 250px;
+}
 .profileContainer .detailsItem{
     background-color: lightblue !important;
 }
