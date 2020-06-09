@@ -42,13 +42,13 @@ const ShoppingCartList = (routerProps) => {
     
     if (openOrder.length === 0 || shoppingCart.length === 0) {
         return (
-            <>
+            <div className='shoppingCart'>
                 <h1>Shopping Cart:</h1>
                 <div>
                     <h3>You have no items in your cart</h3>
                     <button className="clickable" type="button" onClick={() => props.history.push("/buy")}>Browse Products</button>
                 </div>
-            </>
+            </div>
         )
     } else {
         return (

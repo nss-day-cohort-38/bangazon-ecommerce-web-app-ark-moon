@@ -5,6 +5,12 @@
     justify-content: center;
     align-items: center;
 }
+.detailsItem img{
+    max-width: 250px;
+}
+.profileContainer .detailsItem{
+    background-color: lightblue !important;
+}
 
 .paymentMethodContainer{
     text-align: center;
@@ -12,21 +18,32 @@
     padding: 20px;
     border: 1px solid lightgray;
     box-shadow: 2px 2px gainsboro;
-
+    background-color: lightblue;
 }
 
+.paymentMethodContainer div{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .cardContainer{
     position: relative;
     width: 350px;
     height: 225px;
-    background-color: #0166b4;
+    background-image: linear-gradient(to bottom right, #0166b4, #5b9793);
+    box-shadow: 2px 2px 2px 2px lightgray;
     color: #b7b7b7;
     border-radius: 7px;
     margin: 20px;
 }
 .cardContainer > * {
     color: #b7b7b7;
+    text-shadow: 1px 1px 2px black;
+
+}
+.cardContainer .deleteCard{
+    text-shadow: none !important;
 }
 .cardChipImg{
     position: absolute;

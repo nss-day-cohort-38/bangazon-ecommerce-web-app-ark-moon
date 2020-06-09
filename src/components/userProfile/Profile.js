@@ -20,7 +20,7 @@ const UserProfile = ({routerProps}) => {
   if (customer) {
     return (
       <div className='profileContainer'>
-      <div class="detailsItem">
+      <div className="detailsItem">
         <img className='detailsImage' src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_24787.png&f=1&nofb=1' alt='profile'/>
         <h1>
           {customer.user.first_name} {customer.user.last_name}
