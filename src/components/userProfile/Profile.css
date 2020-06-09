@@ -6,13 +6,17 @@
     align-items: center;
 }
 
+.profileContainer .detailsItem{
+    background-color: lightblue !important;
+}
+
 .paymentMethodContainer{
     text-align: center;
     width: 50%;
     padding: 20px;
     border: 1px solid lightgray;
     box-shadow: 2px 2px gainsboro;
-
+    background-color: lightblue;
 }
 
 .paymentMethodContainer div{
@@ -35,6 +39,9 @@
     color: #b7b7b7;
     text-shadow: 1px 1px 2px black;
 
+}
+.cardContainer .deleteCard{
+    text-shadow: none !important;
 }
 .cardChipImg{
     position: absolute;
